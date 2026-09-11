@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connected_ticker_text">%s connected</string>
+    <string name="update_accessory_summary">Optimise functionality by updating to the latest firmware version</string>
+    <string name="extension_search_updated_sw2">Optimised for SW 2</string>
+    <string name="extension_search_compatible_sw2">Works with SW 2</string>
+    <string name="costanza_generic_error">Error. Please try again later.</string>
+</resources>

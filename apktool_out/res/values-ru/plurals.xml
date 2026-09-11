@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">Удалить циферблаты?</item>
+        <item quantity="one">Удалить циферблат?</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">Циферблаты удалены</item>
+        <item quantity="one">Циферблат удален</item>
+    </plurals>
+    <plurals name="wallpaper_list_confirm_delete_string">
+        <item quantity="other">Удалить фоновые рисунки?</item>
+        <item quantity="one">Удалить фоновый рисунок?</item>
+    </plurals>
+    <plurals name="wallpaper_deleted_plural">
+        <item quantity="other">Фоновые рисунки удалены.</item>
+        <item quantity="one">Фоновый рисунок удален.</item>
+    </plurals>
+</resources>

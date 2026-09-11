@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="gravity">
+        <flag name="bottom" value="0x00000050" />
+        <flag name="center" value="0x00000011" />
+        <flag name="center_horizontal" value="0x00000001" />
+        <flag name="center_vertical" value="0x00000010" />
+        <flag name="left" value="0x00000003" />
+        <flag name="right" value="0x00000005" />
+        <flag name="top" value="0x00000030" />
+    </attr>
+    <attr name="timeOffset" format="integer" />
+    <attr name="textSize" format="dimension">
+        <enum name="match_parent" value="-1" />
+    </attr>
+    <attr name="textArray" format="reference" />
+    <attr name="timeType">
+        <enum name="am_pm" value="25" />
+        <enum name="constant" value="0" />
+        <enum name="days_of_month" value="11" />
+        <enum name="days_of_month_digit1" value="13" />
+        <enum name="days_of_month_digit2" value="12" />
+        <enum name="days_of_week" value="10" />
+        <enum name="days_of_year" value="14" />
+        <enum name="days_of_year_digit1" value="17" />
+        <enum name="days_of_year_digit2" value="16" />
+        <enum name="days_of_year_digit3" value="15" />
+        <enum name="hours" value="7" />
+        <enum name="hours_digit1" value="9" />
+        <enum name="hours_digit2" value="8" />
+        <enum name="hours_fine" value="26" />
+        <enum name="minutes" value="4" />
+        <enum name="minutes_digit1" value="6" />
+        <enum name="minutes_digit2" value="5" />
+        <enum name="months" value="18" />
+        <enum name="months_digit1" value="20" />
+        <enum name="months_digit2" value="19" />
+        <enum name="seconds" value="1" />
+        <enum name="seconds_digit1" value="3" />
+        <enum name="seconds_digit2" value="2" />
+        <enum name="years_digit1" value="24" />
+        <enum name="years_digit2" value="23" />
+        <enum name="years_digit3" value="22" />
+        <enum name="years_digit4" value="21" />
+    </attr>
+    <attr name="template" format="string" />
+    <attr name="fontPath" format="string" />
+    <attr name="icon" format="reference" />
+    <attr name="stars" format="string" />
+    <attr name="filter" format="string" />
+    <attr name="altLink" format="string" />
+    <attr name="category" format="reference" />
+    <attr name="company" format="string" />
+    <attr name="description" format="string" />
+    <attr name="numColumns" format="integer" />
+    <attr name="numRows" format="integer" />
+    <attr name="collapsed_height" format="dimension" />
+    <attr name="drag_scroll_start" format="float" />
+    <attr name="max_drag_scroll_speed" format="float" />
+    <attr name="float_background_color" format="color" />
+    <attr name="remove_mode">
+        <enum name="clickRemove" value="0" />
+        <enum name="flingRemove" value="1" />
+    </attr>
+    <attr name="track_drag_sort" format="boolean" />
+    <attr name="float_alpha" format="float" />
+    <attr name="slide_shuffle_speed" format="float" />
+    <attr name="remove_animation_duration" format="integer" />
+    <attr name="drop_animation_duration" format="integer" />
+    <attr name="drag_enabled" format="boolean" />
+    <attr name="sort_enabled" format="boolean" />
+    <attr name="remove_enabled" format="boolean" />
+    <attr name="drag_start_mode">
+        <enum name="onDown" value="0" />
+        <enum name="onLongPress" value="2" />
+        <enum name="onMove" value="1" />
+    </attr>
+    <attr name="drag_handle_id" format="integer" />
+    <attr name="fling_handle_id" format="integer" />
+    <attr name="click_remove_id" format="integer" />
+    <attr name="use_default_controller" format="boolean" />
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="notification_overview_text_background_color">#0fffffff</color>
+    <color name="text_dark_gray">#ff333333</color>
+    <color name="text_disabled">#ff4e4e4e</color>
+    <color name="white">#ffffffff</color>
+    <color name="watch_face_background_free">#ff262626</color>
+    <color name="watch_face_background_hover">#ff00ff00</color>
+    <color name="watch_face_background_conflict">#ffff0000</color>
+    <color name="watch_face_background_used">#ff0000ff</color>
+    <color name="watch_face_background_dash">@color/white</color>
+    <color name="watch_preview_background_black">#ff333333</color>
+    <color name="watch_preview_background_black_non_enabled">#16000000</color>
+    <color name="watch_preview_list_background">#ffefefef</color>
+    <color name="drop_shadow_text">@color/white</color>
+    <color name="drop_shadow_gray">#ff25221e</color>
+    <color name="limeade_green_2bb800">#ff2bb800</color>
+    <color name="chicago_gray_52555a">#ff52555a</color>
+    <color name="boulder_gray_777777">#ff777777</color>
+    <color name="silver_chalice_gray_b1b1b1">#ffb1b1b1</color>
+    <color name="mercury_gray_e1e1e1">#ffe1e1e1</color>
+    <color name="charcoal_gray_222222">#ff222222</color>
+    <color name="lighter_gray">#fffefefe</color>
+    <color name="menu_text_online">#ffffffff</color>
+    <color name="menu_text_offline">#ff777777</color>
+    <color name="menu_background">#e0000000</color>
+    <color name="menu_item_divider1">#e0000000</color>
+    <color name="menu_item_divider2">#e0434343</color>
+    <color name="android_blue">#ff1096ec</color>
+</resources>

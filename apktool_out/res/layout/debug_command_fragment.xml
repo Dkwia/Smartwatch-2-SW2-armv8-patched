@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/debug_command_adb" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/dbg_debug_command_adb" />
+    <TextView android:id="@id/debug_command_label" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/dbg_debug_command_label" />
+    <EditText android:ellipsize="end" android:id="@id/debug_command" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/dbg_debug_command_hint" android:lines="1" android:scrollHorizontally="true" android:singleLine="true">
+        <requestFocus />
+    </EditText>
+    <ListView android:id="@id/debug_command_history" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>

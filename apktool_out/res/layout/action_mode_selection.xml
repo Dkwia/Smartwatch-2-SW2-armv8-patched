@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.sonymobile.smartconnect.hostapp.preferences.menu.SelectionSpinner android:textSize="18.0sp" android:gravity="start|center" android:id="@id/select_item_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" style="?android:attr/actionDropDownStyle" />
+</LinearLayout>

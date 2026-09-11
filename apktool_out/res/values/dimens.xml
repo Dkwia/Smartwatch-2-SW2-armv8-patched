@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="costanza_width">220.0px</dimen>
+    <dimen name="costanza_height">176.0px</dimen>
+    <dimen name="costanza_status_bar_height">28.0px</dimen>
+    <dimen name="cell_size">44.0px</dimen>
+    <dimen name="costanza_view_width">230.0dip</dimen>
+    <dimen name="costanza_view_height">184.0dip</dimen>
+    <dimen name="extension_icon_size">48.0px</dimen>
+    <dimen name="notification_rich_notification_icon_size">40.0px</dimen>
+    <dimen name="notification_contact_icon_size">32.0px</dimen>
+    <dimen name="notification_status_bar_icon_size">20.0px</dimen>
+    <dimen name="notification_widget_icon_size">26.0px</dimen>
+    <dimen name="notification_smiley_size">25.0px</dimen>
+    <dimen name="notification_overview_height">148.0px</dimen>
+    <dimen name="text_size_large">20.0px</dimen>
+    <dimen name="text_size_normal">16.0px</dimen>
+    <dimen name="text_size_small">12.0px</dimen>
+    <item type="dimen" name="text_size_notification_message">@dimen/text_size_normal</item>
+    <dimen name="one_row_text_height">20.0px</dimen>
+    <dimen name="event_screen_margin">6.0px</dimen>
+    <dimen name="widget_fragment_height">83.0dip</dimen>
+    <dimen name="list_item_clock_width">72.0dip</dimen>
+    <dimen name="list_item_clock_height">83.0dip</dimen>
+    <dimen name="list_item_widget_thumbnail_width">82.0dip</dimen>
+    <dimen name="list_item_widget_width">36.0dip</dimen>
+    <dimen name="list_item_widget_height">36.0dip</dimen>
+    <dimen name="list_item_watchface_thumbnail_width">90.0dip</dimen>
+    <dimen name="list_item_watchface_thumbnail_height">72.0dip</dimen>
+    <dimen name="list_item_wallpaper_thumbnail_width">120.0dip</dimen>
+    <dimen name="list_item_wallpaper_thumbnail_height">96.0dip</dimen>
+    <dimen name="asf_row_height">62.0dip</dimen>
+    <dimen name="asf_list_item_height">64.0dip</dimen>
+    <dimen name="asf_list_item_image_padding">8.0dip</dimen>
+    <dimen name="asf_icon_size">32.0dip</dimen>
+    <dimen name="asf_list_item_margin">8.0dip</dimen>
+    <dimen name="asf_list_padding">16.0dip</dimen>
+    <dimen name="bitmap_rendering_rich_notification_size_low">21.329987dip</dimen>
+    <dimen name="bitmap_rendering_rich_notification_size_medium">16.0dip</dimen>
+    <dimen name="bitmap_rendering_rich_notification_size_high">10.669983dip</dimen>
+    <dimen name="bitmap_rendering_rich_notification_size_xhigh">8.0dip</dimen>
+    <dimen name="bitmap_rendering_rich_notification_size_xxhigh">5.3299866dip</dimen>
+    <dimen name="newman_width">128.0px</dimen>
+    <dimen name="newman_height">128.0px</dimen>
+    <dimen name="newman_top_left_x">22.0px</dimen>
+    <dimen name="newman_top_left_y">0.0px</dimen>
+    <item type="dimen" name="newman_upscale_factor">1.375</item>
+</resources>

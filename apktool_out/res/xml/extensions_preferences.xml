@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/app_name" android:key="extensionsPreferenceScreen"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:layout="@layout/preference_item_watch_faces" android:key="watchFacesPrefKey" />
+    <Preference android:layout="@layout/preference_item_wallpapers" android:key="wallpaperPrefKey" />
+    <Preference android:layout="@layout/preference_item_my_apps" android:key="myAppsListPrefKey" />
+    <PreferenceCategory android:title="@string/search_extensions_preference_screen" android:key="appsCatPrefKey">
+        <Preference android:layout="@layout/preference_item" android:key="searchForAppsPrefKey" />
+        <Preference android:layout="@layout/preference_item_play_now" android:key="getAppsPrefKey" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/featured_extensions_preference_screen" android:key="featuredAppsPrefKey" />
+</PreferenceScreen>

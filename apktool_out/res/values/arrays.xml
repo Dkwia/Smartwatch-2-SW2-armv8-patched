@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="applicationCategoriesSearchTerms">
+        <item></item>
+        <item>health &amp; fitness</item>
+        <item>clock</item>
+        <item>communication</item>
+        <item>game</item>
+        <item>lifestyle</item>
+        <item>music &amp; audio</item>
+        <item>notification</item>
+        <item>photography</item>
+        <item>productivity</item>
+        <item>tools</item>
+        <item>transportation</item>
+    </string-array>
+    <string-array name="applicationCategoriesText">
+        <item>@string/extension_category_all</item>
+        <item>@string/extension_category_active</item>
+        <item>@string/extension_category_custom_clocks</item>
+        <item>@string/extension_category_communication</item>
+        <item>@string/extension_category_games</item>
+        <item>@string/extension_category_lifestyle</item>
+        <item>@string/extension_category_music_and_audio</item>
+        <item>@string/extension_category_notification</item>
+        <item>@string/extension_category_photography</item>
+        <item>@string/extension_category_productivity</item>
+        <item>@string/extension_category_tools</item>
+        <item>@string/extension_category_transportation</item>
+    </string-array>
+    <string-array name="mark_menu">
+        <item>@string/gui_mark_all_txt</item>
+        <item>@string/gui_unmark_all_txt</item>
+    </string-array>
+    <string-array name="devices">
+        <item>costanza</item>
+    </string-array>
+    <string-array name="native_apps">
+        <item>com.native.alarm.app;2501;native_app_alarm;drawable/alarm_icon</item>
+        <item>com.native.calculator.app;2518;native_app_calculator;drawable/calculator_icon</item>
+        <item>com.native.flashlight.app;2505;native_app_flashlight;drawable/hostapp_flashlight_icn</item>
+        <item>com.native.settings.app;2513;native_app_settings;drawable/settings_icon</item>
+        <item>com.native.stopwatch.app;2516;native_app_stopwatch;drawable/stopwatch_icon</item>
+        <item>com.native.timer.app;2515;native_app_timer;drawable/timer_icon</item>
+        <item>com.native.watchworm.app;2519;native_app_watchworm;drawable/watchworm_icon</item>
+    </string-array>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/add_new_icon" android:id="@id/menu_wallpaper_add" android:title="@string/wallpaper_list_menu_new_string" android:showAsAction="always" />
+    <item android:icon="@drawable/trash_can_icon" android:id="@id/menu_wallpaper_delete" android:title="@string/wallpaper_list_menu_delete_string" android:showAsAction="always" />
+</menu>

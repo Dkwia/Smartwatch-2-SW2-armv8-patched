@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/about_accessory_title" android:key="firmwarePreferenceScreen"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/firmware_version_accessory_title" android:key="firmwareVersionAccessoryPref" android:summary="@string/firmware_version_accessory_unknown" />
+    <Preference android:title="@string/firmware_version_hostapp_title" android:key="firmwareVersionHostappPref" android:summary="" />
+    <Preference android:title="@string/update_accessory" android:key="startFotaPref" android:summary="@string/update_accessory_summary" />
+    <Preference android:title="@string/attributions_item" android:key="attributions" />
+</PreferenceScreen>

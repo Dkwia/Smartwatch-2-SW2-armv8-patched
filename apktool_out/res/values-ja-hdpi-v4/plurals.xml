@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">ウォッチフェイスを削除しますか?</item>
+        <item quantity="one">ウォッチフェイスを削除しますか?</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">ウォッチフェイスを削除しました</item>
+        <item quantity="one">ウォッチフェイスを削除しました</item>
+    </plurals>
+</resources>

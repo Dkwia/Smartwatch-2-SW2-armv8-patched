@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center|top" android:orientation="vertical" android:id="@id/ll_widget" android:background="@color/watch_preview_background_black" android:paddingLeft="12.0dip" android:paddingTop="12.0dip" android:paddingRight="12.0dip" android:paddingBottom="6.0dip" android:layout_width="@dimen/list_item_widget_thumbnail_width" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.sonymobile.smartconnect.hostapp.preferences.watchfaces.view.WidgetView android:id="@id/widget" android:duplicateParentState="true" android:layout_width="@dimen/list_item_widget_width" android:layout_height="@dimen/list_item_widget_height" />
+    <TextView android:textColor="@color/white" android:ellipsize="end" android:gravity="center_horizontal" android:id="@id/widget_name" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:lines="2" android:maxEms="10" style="@style/watch_faces_select_font_style_black" />
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">Excluir faces do relógio?</item>
+        <item quantity="one">Excluir face do relógio?</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">Faces do relógio apagadas</item>
+        <item quantity="one">Face do relógio excluída</item>
+    </plurals>
+    <plurals name="wallpaper_list_confirm_delete_string">
+        <item quantity="other">Apagar papéis de parede?</item>
+        <item quantity="one">Apagar papel de parede?</item>
+    </plurals>
+    <plurals name="wallpaper_deleted_plural">
+        <item quantity="other">Papéis de parede apagados</item>
+        <item quantity="one">Papel de parede apagado</item>
+    </plurals>
+</resources>

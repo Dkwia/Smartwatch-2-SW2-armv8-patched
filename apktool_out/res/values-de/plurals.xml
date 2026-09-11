@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">Ziffernblätter löschen?</item>
+        <item quantity="one">Ziffernblatt löschen?</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">Ziffernblätter gelöscht</item>
+        <item quantity="one">Ziffernblatt gelöscht</item>
+    </plurals>
+    <plurals name="wallpaper_list_confirm_delete_string">
+        <item quantity="other">Hintergrundbilder löschen?</item>
+        <item quantity="one">Hintergrundbild löschen?</item>
+    </plurals>
+    <plurals name="wallpaper_deleted_plural">
+        <item quantity="other">Hintergrundbilder gelöscht</item>
+        <item quantity="one">Hintergrundbild gelöscht</item>
+    </plurals>
+</resources>

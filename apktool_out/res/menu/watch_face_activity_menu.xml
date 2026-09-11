@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/rename_icon" android:id="@id/menu_watch_face_rename" android:title="@string/watch_face_menu_rename_string" android:showAsAction="always" />
+    <item android:icon="@drawable/clear_icon" android:id="@id/menu_watch_face_clear" android:title="@string/watch_face_menu_clear_string" android:showAsAction="always" />
+</menu>

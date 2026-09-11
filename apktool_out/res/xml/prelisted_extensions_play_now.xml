@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:aha="http://schemas.android.com/apk/res/com.sonymobile.smartconnect.smartwatch2">
+    <PreferenceCategory android:key="prelisted_extensions">
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Messaging" android:key="com.sonyericsson.extras.liveware.extension.messaging" aha:icon="@drawable/hostapp_messaging_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/4" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Email" android:key="com.sonyericsson.extras.liveware.extension.mail" aha:icon="@drawable/hostapp_email_icn" aha:filter="Sony" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/9" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Gmail Smart Extension" android:key="com.sonyericsson.extras.liveware.extension.gmail" aha:icon="@drawable/hostapp_gmail_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/25" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Calendar reminder" android:key="com.sonyericsson.extras.liveware.extension.calendar" aha:icon="@drawable/hostapp_calendar_reminder_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/12" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Calendar Smart Extension" android:key="com.sonyericsson.extras.liveware.extension.calendar.control" aha:icon="@drawable/hostapp_calendar_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/21" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Music player" android:key="com.sonyericsson.extras.liveware.extension.music" aha:icon="@drawable/hostapp_music_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/6" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Slide show" android:key="com.sonyericsson.extras.liveware.extension.slideshow" aha:icon="@drawable/hostapp_slideshow_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/22" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Call handling" android:key="com.sonyericsson.extras.liveware.extension.call" aha:icon="@drawable/hostapp_call_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/8" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Find Phone" android:key="com.sonyericsson.extras.liveware.extension.findphone" aha:icon="@drawable/hostapp_findphone_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/13" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Camera" android:key="com.sonymobile.extras.liveware.extension.camera" aha:icon="@drawable/hostapp_camera_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/23" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Missed call" android:key="com.sonyericsson.extras.liveware.extension.missedcall" aha:icon="@drawable/hostapp_missed_call_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/11" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="8 Game" android:key="com.sonyericsson.extras.liveware.extension.eight.puzzle" aha:icon="@drawable/hostapp_8_game_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/24" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Weather" android:key="com.sonyericsson.extras.liveware.extension.weather" aha:icon="@drawable/hostapp_weather_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/5" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="RSS" android:key="com.sonyericsson.extras.liveware.extension.rss" aha:icon="@drawable/hostapp_rss_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/10" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="RenRen" android:key="com.sonymobile.androidapp.renrenextension" aha:icon="@drawable/newman_hostapp_renren_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/14" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Weibo" android:key="com.sonymobile.androidapp.weiboextention" aha:icon="@drawable/newman_hostapp_weibo_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/15" />
+        <com.sonymobile.smartconnect.hostapp.preferences.IconPreference android:title="Walkmate" android:key="com.sonymobile.androidapp.walkmate" aha:icon="@drawable/hostapp_walkmate_icn" aha:altLink="http://mob.cn-playnow.com.cn/sc/c/35" />
+    </PreferenceCategory>
+</PreferenceScreen>

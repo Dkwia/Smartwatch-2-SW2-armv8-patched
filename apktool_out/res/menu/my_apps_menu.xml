@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/sort_alphabetical" android:id="@id/menu_sort_az" android:title="@string/my_apps_menu_sort_az" android:showAsAction="always" />
+    <item android:icon="@drawable/sort_favorite" android:id="@id/menu_sort_custom" android:title="@string/my_apps_menu_sort_custom" android:showAsAction="always" />
+</menu>

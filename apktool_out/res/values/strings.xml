@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartWatch 2</string>
+    <string name="ga_trackingId">UA-21337977-29</string>
+    <string name="ga_sampleFrequency">100.0</string>
+    <string name="dbg_factory_reset">[Debug] Factory reset</string>
+    <string name="dbg_factory_reset_failed">Factory reset failed</string>
+    <string name="dbg_extension_settings">[Debug] Extension settings</string>
+    <string name="dbg_send_single_img_1">[Debug] Send single image 1</string>
+    <string name="dbg_send_single_img_2">[Debug] Send single image 2</string>
+    <string name="dbg_connecting">[Debug] Connecting...</string>
+    <string name="dbg_connected">[Debug] Connected to SmartWatch 2!</string>
+    <string name="dbg_no_connection">[Debug] No connection!</string>
+    <string name="dbg_connected_to_old_fw">[Debug] SmartWatch 2 uses too old firmware!</string>
+    <string name="dbg_connected_to_new_fw">[Debug] SmartWatch 2 uses too new firmware!</string>
+    <string name="dbg_ask_for_fota">[Debug] Ask for FOTA</string>
+    <string name="dbg_redownload_fota">[Debug] Re-download FOTA</string>
+    <string name="dbg_redownload_alternative_fota">[Debug] Re-download alternative FOTA</string>
+    <string name="dbg_disable_auto_fota">[Debug] Disable automatic FOTA</string>
+    <string name="dbg_enable_auto_fota">[Debug] Enable automatic FOTA</string>
+    <string name="dbg_toggle_extension_start">[Debug] Start</string>
+    <string name="dbg_toggle_extension_stop">[Debug] Stop</string>
+    <string name="dbg_show_costanza_log">[Debug] Show Costanza Log</string>
+    <string name="dbg_show_WatchFaceEditor">[Debug] Show Watchface Editor</string>
+    <string name="dbg_preference_menu_debug_string">Debug</string>
+    <string name="dbg_wrong_certificate">"Different certificates of Host App and Smart Connect.
+Host App cannot start."</string>
+    <string name="dbg_log_name">DebugEvents</string>
+    <string name="dbg_share">Share</string>
+    <string name="dbg_refresh">Auto-Refresh</string>
+    <string name="dbg_dump_filename">File Name</string>
+    <string name="dbg_dump_filesize">File Size</string>
+    <string name="dbg_remove_dumps">Remove Dumps</string>
+    <string name="dbg_send_debug_command">Send Debug Command...</string>
+    <string name="dbg_debug_command_adb">"You may also issue commands over tcp.
+For a usb-connected phone:
+ > adb forward tcp:58616 tcp:58616
+ > telnet localhost 58616
+"</string>
+    <string name="dbg_debug_command_label">Command:</string>
+    <string name="dbg_debug_command_hint">Command for Costanza</string>
+    <string name="dbg_really_remove_dumps">Delete all stored dump files?</string>
+    <string name="dbg_start_apprecommender">Start app recommender extension</string>
+    <string name="dbg_force_crash_on_watch">[Debug] Force crash on watch</string>
+    <string name="dummy_text_short">Insert string here!</string>
+    <string name="dummy_text_long">Insert a much longer string here to test wrapping and other stuff!</string>
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, rebum persius delenit sed id, cu facer veniam sit. No nam falli facete invenire, an duo graeci senserit, zril dolore ex vis. Pro no suas eros intellegat, vim at summo nobis expetenda, quidam dicunt percipit ad mei. Usu ad modus quidam, his inani nominati efficiendi in. Usu suavitate patrioque reprimique ad.
+
+Tota adipisci instructior ne sed, vim at illum melius. Lorem consequat dissentias nam eu, pro ad tempor sapientem gubergren, diam scaevola similique an eam. At laoreet conceptam adversarium sea. Debet inimicus nec te. Eam dolorem dolores ut. Elitr nemore lobortis ius id, dolore cetero."</string>
+    <string name="dummy_action_1">Action 1</string>
+    <string name="dummy_action_2">Action 2</string>
+    <string name="dummy_action_3">Action 3</string>
+    <string name="uses_accessory_font">uses-accessory-font</string>
+    <string name="permission_notices">"Permission notices for SmartWatch 2 embedded SW
+
+Permission notice for
+Miniz
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+
+In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to http://unlicense.org
+
+
+Permission notice for 
+PicoJpeg v1.0
+
+Dual license: Public domain and MIT, Rich Geldreich &lt;richgel99@gmail.com>
+
+The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Permission notice for 
+uPng
+
+Copyright © 2005-2010 Lode Vandevenne
+Copyright © 2010 Sean Middleditch
+
+This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source distribution.
+
+Permission notice for 
+Android Fonts
+
+Copyright © 2007 The Android Open Source Project.
+
+Licensed under the Apache License, Version 2.0 (the \"License\");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+Permission notice for
+FatFs
+
+FatFs module is a generic FAT file system module for small embedded systems. This is a free software that opened for education, research and commercial developments under license policy of following terms.
+
+Copyright © 2013, ChaN, all right reserved.
+
+* The FatFs module is a free software and there is NO WARRANTY.
+* No restriction on use. You can use, modify and redistribute it for \"
+\"personal, non-profit or commercial products UNDER YOUR RESPONSIBILITY.
+* Redistributions of source code must retain the above copyright notice.
+
+Permission notice for 
+DragSortListView
+
+A subclass of the Android ListView component that enables drag and drop re-ordering of list items.
+
+Copyright 2012 Carl Bauer
+
+Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."</string>
+    <string name="permission_notices_hostapp">"The product includes:
+
+The Android Open Source Project (Support Package v4; packages/apps/settings/src/com/android/settings/IconPreferenceScreen.java, CustomMenu.java)
+
+Project home page: http://source.android.com
+
+Copyright © 2006–2011 The Android Open Source Project
+
+The Android Open Source Project is licensed under the Apache License, Version 2.0 (the \"License\").
+
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+See the License for the specific language governing permissions and limitations under the License.
+
+
+android-mtlist-tutorial (/src/com/mamlambo/tutorial/tutlist/data/TutListProvider.java)
+
+Project home page: https://code.google.com/p/android-mtlist-tutorial
+
+Copyright © 2011, Lauren Darcey and Shane Conder, All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of the &lt;ORGANIZATION> nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS AS IS AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+&lt;ORGANIZATION> = Mamlambo
+
+"</string>
+    <string name="play_now_get_extensions_url">http://mob.cn-playnow.com.cn/sc/getmore/category/1</string>
+    <string name="preference_support_link_string">http://www.sonymobile.com/supportsw2</string>
+    <string name="started_ticker_text">%s started</string>
+    <string name="connected_ticker_text">%sconnected</string>
+    <string name="disconnected_ticker_text">%s disconnected</string>
+    <string name="connected_notification_title">SmartWatch 2</string>
+    <string name="disconnected_notification_content">Disconnected</string>
+    <string name="connected_notification_content">Connected</string>
+    <string name="extensions_preference_screen">Installed applications</string>
+    <string name="featured_extensions_preference_screen">Recommended applications</string>
+    <string name="watch_faces_preference_screen">Watch faces</string>
+    <string name="new_extensions_preference_screen">Applications</string>
+    <string name="extension_download">Download and install</string>
+    <string name="preference_menu_about_string">About</string>
+    <string name="preference_menu_support_string">Support</string>
+    <string name="search_for_applications">Search for applications</string>
+    <string name="search_for_applications_header">Search for applications</string>
+    <string name="extension_category_all">All</string>
+    <string name="extension_category_active">Active</string>
+    <string name="extension_category_custom_clocks">Custom Clocks</string>
+    <string name="extension_category_communication">Communication</string>
+    <string name="extension_category_games">Games</string>
+    <string name="extension_category_music_and_audio">Music &amp; Audio</string>
+    <string name="extension_category_lifestyle">Lifestyle</string>
+    <string name="extension_category_notification">Notifications</string>
+    <string name="extension_category_photography">Photography</string>
+    <string name="extension_category_productivity">Productivity</string>
+    <string name="extension_category_tools">Tools</string>
+    <string name="extension_category_transportation">Transportation</string>
+    <string name="extension_category_button_cancel">Cancel</string>
+    <string name="extension_category_button_search">Search</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="wallpapers_summary">Select and add wallpapers</string>
+    <string name="smartconnect_upgrade_title">SmartConnect upgrade</string>
+    <string name="smartconnect_upgrade_text">The accessory requires a newer SmartConnect.</string>
+    <string name="app_update_needed">Your phone application needs an update to be able to connect to this SmartWatch 2</string>
+    <string name="notification_app_update_needed">Application update needed</string>
+    <string name="about_accessory_title">About the accessory</string>
+    <string name="firmware_version_accessory_title">Accessory version</string>
+    <string name="firmware_version_accessory_unknown">Unknown</string>
+    <string name="firmware_version_hostapp_title">Host application version</string>
+    <string name="update_accessory">Update accessory</string>
+    <string name="update_accessory_summary">Optimize functionality by updating to the latest firmware version</string>
+    <string name="accessory_bluetooth_address_title">Accessory address</string>
+    <string name="fota_interrupted">Update interrupted</string>
+    <string name="fota_recommendation_marketing_name">SmartWatch 2</string>
+    <string name="fota_recommendation_fw_version">Version %1$s</string>
+    <string name="fota_recommendation">Update to the latest version of the firmware to get the most out of your SmartWatch 2</string>
+    <string name="fota_update">Update</string>
+    <string name="fota_notification_update">SmartWatch 2 update</string>
+    <string name="fota_notification_update_available">New version available</string>
+    <string name="fota_notification_downloading">Downloading to SmartWatch 2</string>
+    <string name="fota_notification_failed">Could not update SmartWatch 2</string>
+    <string name="fota_dialog_title">SmartWatch 2 update</string>
+    <string name="fota_not_needed">The latest version of the firmware is already installed on your accessory</string>
+    <string name="fota_please_wait">Please wait</string>
+    <string name="fota_downloading">Downloading…</string>
+    <string name="fota_make_sure">Make sure to:</string>
+    <string name="fota_make_sure_content">Connect your SmartWatch 2 to the charger. Keep phone and SmartWatch 2 in range.</string>
+    <string name="fota_download_done_title">Download complete</string>
+    <string name="fota_failed_title">Could not update</string>
+    <string name="fota_failed_text">Try again?</string>
+    <string name="fota_cancel_button">Cancel</string>
+    <string name="fota_ok_button">OK</string>
+    <string name="fota_version">Version</string>
+    <string name="extension_search_updated_sw2">Optimized for SW 2</string>
+    <string name="extension_search_compatible_sw2">Work w/ SmartWatch 2</string>
+    <string name="costanza_generic_error">Error. Please try again later.</string>
+    <string name="apprec_name">App recommender</string>
+    <string name="apprec_preference_activity_title">App recommender settings</string>
+    <string name="apprec_extension_name">App recommender</string>
+    <string name="apprec_configuration_text">App recommender settings</string>
+    <string name="apprec_install_txt">Install</string>
+    <string name="apprec_installed_txt">Installed</string>
+    <string name="apprec_install_txt_one">Please install the app on your phone</string>
+    <string name="apprec_install_txt_two">"Don't show again"</string>
+    <string name="apprec_extension_category_active">Active</string>
+    <string name="apprec_extension_category_custom_clocks">Custom Clocks</string>
+    <string name="apprec_extension_category_communication">Communication</string>
+    <string name="apprec_extension_category_games">Games</string>
+    <string name="apprec_extension_category_music_and_audio">Music &amp; Audio</string>
+    <string name="apprec_extension_category_lifestyle">Lifestyle</string>
+    <string name="apprec_extension_category_notification">Notifications</string>
+    <string name="apprec_extension_category_photography">Photography</string>
+    <string name="apprec_extension_category_productivity">Productivity</string>
+    <string name="apprec_extension_category_tools">Tools</string>
+    <string name="apprec_extension_category_transportation">Transportation</string>
+    <string name="attributions_item">Open source attributions</string>
+    <string name="dialog_too_many_apps_title">SmartWatch 2 info.</string>
+    <string name="dialog_too_many_apps_text">SmartWatch 2 can only show a certain amount of apps. Uninstall some unused apps to start using the latest installed.</string>
+    <string name="get_more_applications">Get more applications</string>
+    <string name="watch_list_tap_to_edit">Tap to edit</string>
+    <string name="watch_list_tap_to_select">Tap to select</string>
+    <string name="watch_faces">Edit watch faces</string>
+    <string name="watch_face">Watch face</string>
+    <string name="watches">Clocks</string>
+    <string name="widgets">Widgets</string>
+    <string name="watch_face_menu_rename_string">Rename</string>
+    <string name="watch_face_menu_clear_string">Clear watch face</string>
+    <string name="watch_face_list_menu_new_string">New watch face</string>
+    <string name="watch_face_list_menu_delete_string">Delete watch face</string>
+    <string name="watch_face_rename">Rename</string>
+    <string name="new_watch_face">Watch face</string>
+    <string name="watch_face_confirm_clear_string">Clear watch face?</string>
+    <string name="watch_face_menu_clear_string_confirmation">Clear</string>
+    <string name="watch_face_saved_toast_string">Watch face saved</string>
+    <string name="err_watch_face_no_more_space">No space left on watch face</string>
+    <string name="err_watch_face_list_no_more_watch_faces">Maximum number of watch faces reached. Delete or edit existing watch faces before adding more.</string>
+    <string name="err_watch_face_background_no_more_space">Maximum number of backgrounds reached. Delete or edit existing backgrounds before adding more.</string>
+    <string name="widget_name_alarm">Alarm</string>
+    <string name="widget_name_alarm_small">Alarm small</string>
+    <string name="widget_name_new_events">New events</string>
+    <string name="widget_name_new_events_small">New events small</string>
+    <string name="widget_name_weekday">Weekday</string>
+    <string name="widget_name_date">Date</string>
+    <string name="widget_name_day_date">Day and date</string>
+    <string name="widget_name_numeric_date">Numeric date</string>
+    <string name="widget_name_bluetooth">Bluetooth</string>
+    <string name="widget_name_battery">Battery</string>
+    <string name="widget_clock_name_hero">Digital Vertical</string>
+    <string name="widget_clock_name_classic">Digital Horizontal Date</string>
+    <string name="widget_clock_name_big_hour">Digital Horizontal</string>
+    <string name="widget_clock_name_small_hour">SmallHour</string>
+    <string name="widget_clock_name_clasic_large">ClassicLarge</string>
+    <string name="widget_clock_name_analogue_1">Analog View 1</string>
+    <string name="widget_clock_name_analogue_2">Analog View 2</string>
+    <string name="widget_clock_name_analogue_3">Analog View 3</string>
+    <string name="watch_face_name_hero">Digital Vertical</string>
+    <string name="watch_face_name_digital_1">Digital Horizontal Date</string>
+    <string name="watch_face_name_digital_2">Digital Horizontal</string>
+    <string name="watch_face_name_analogue_1_black">Analog Black/White Date</string>
+    <string name="watch_face_name_analogue_1_white">Analog White/Black Date</string>
+    <string name="watch_face_name_analogue_2_black">Analog Black/White</string>
+    <string name="watch_face_name_analogue_2_white">Analog White/Black</string>
+    <string name="watch_face_name_analogue_3">Analog View 1</string>
+    <string name="watch_face_name_analogue_4">Analog View 2</string>
+    <string name="watch_face_name_analogue_5">Analog View 3</string>
+    <string name="gui_mark_all_txt">Mark all</string>
+    <string name="gui_unmark_all_txt">Unmark all</string>
+    <string name="gui_cancel_txt">Cancel</string>
+    <string name="gui_delete_txt">Delete</string>
+    <string name="settings_message_selected_for_delete">%d selected</string>
+    <string name="remove">Delete</string>
+    <string name="watch_face_error_toast_no_space_on_watchface">No space on watchface</string>
+    <string name="watch_face_error_toast_widget_already_used">Widget already used</string>
+    <string name="watch_face_error_toast_one_clock_can_only_be_used">One clock can only be used</string>
+    <string name="wallpaper_00">Sony 7</string>
+    <string name="wallpaper_01">Sony 1</string>
+    <string name="wallpaper_02">Sony 2</string>
+    <string name="wallpaper_03">Sony 3</string>
+    <string name="wallpaper_04">Sony 4</string>
+    <string name="wallpaper_05">Sony 5</string>
+    <string name="wallpaper_06">Sony 6</string>
+    <string name="wallpaper_list_menu_new_string">New wallpaper</string>
+    <string name="wallpaper_list_menu_delete_string">Delete wallpaper</string>
+    <string name="wallpaper_selection_string">Select custom wallpaper</string>
+    <string name="err_wallpaper_list_no_more_wallpapers">Only a limited amount of wallpapers allowed. Delete an existing wallpaper before adding more.</string>
+    <string name="watchfaces_title">Watch faces</string>
+    <string name="watchfaces_summary">Select and add watch faces</string>
+    <string name="watchfaces_max_selected_info">Deselect a watch face before selecting another one</string>
+    <string name="watchfaces_one_selected_info">At least one watch face must be selected</string>
+    <string name="multiple_watchfaces_info">You can select up to three watch faces to swipe between on your SmartWatch 2</string>
+    <string name="multiple_watchfaces_info_header">Favorite watch faces</string>
+    <string name="OK">OK</string>
+    <string name="update_notification_content">New features</string>
+    <string name="whats_new_text"><ul><li>"New watch face collection
+"</li><li>"Switch watch face with one swipe
+"</li><li>Do not disturb function stops notifications coming to your SmartWatch 2</li></ul></string>
+    <string name="whats_new_header">New features</string>
+    <string name="watch_face_name_analogue_green">Analog green</string>
+    <string name="watch_face_name_digital_yellow">Digital yellow</string>
+    <string name="watch_face_name_analogue_pruple">Analog purple</string>
+    <string name="watch_face_name_digital_pink">Digital pink</string>
+    <string name="widget_name_dnd">Do not disturb</string>
+    <string name="my_apps_title">My Apps</string>
+    <string name="my_apps_description">View settings and sort apps</string>
+    <string name="my_apps_menu_sort_az">Sort alphabetically</string>
+    <string name="my_apps_menu_sort_custom">Own sort order</string>
+    <string name="my_apps_first_sort_info">Create sort order by moving apps around</string>
+    <string name="my_apps_item_edit_settings">Edit settings</string>
+    <string name="my_apps_screen_section">Screen %d</string>
+    <string name="my_apps_screen_section_disabled_apps">Disabled apps in SmartWatch 2</string>
+    <string name="my_apps_screen_section_more_app">More app settings</string>
+    <string name="search_extensions_preference_screen">Search for apps</string>
+    <string name="get_more_apps">Get more apps</string>
+    <string name="get_more_apps_header">Search for apps</string>
+    <string name="native_app_alarm">Alarm</string>
+    <string name="native_app_calculator">Calculator</string>
+    <string name="native_app_flashlight">Flashlight</string>
+    <string name="native_app_settings">Settings</string>
+    <string name="native_app_stopwatch">Stopwatch</string>
+    <string name="native_app_timer">Timer</string>
+    <string name="native_app_watchworm">WatchWorm</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/ll_widget" android:background="@drawable/widget_select_bkg" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="6.0dip" android:layout_marginRight="6.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.sonymobile.smartconnect.hostapp.preferences.watchfaces.view.WidgetView android:id="@id/widget" android:duplicateParentState="true" android:layout_width="@dimen/list_item_clock_width" android:layout_height="@dimen/widget_fragment_height" android:scaleType="centerInside" android:adjustViewBounds="true" />
+</LinearLayout>

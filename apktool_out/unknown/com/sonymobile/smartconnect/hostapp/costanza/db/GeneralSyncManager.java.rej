@@ -1,0 +1,12 @@
+diff a/src/com/sonymobile/smartconnect/hostapp/costanza/db/GeneralSyncManager.java b/src/com/sonymobile/smartconnect/hostapp/costanza/db/GeneralSyncManager.java	(rejected hunks)
+@@ -1153,7 +1153,10 @@ implements ExtensionsChangeListener, NotificationSourcesChangeListener, EventsCh
+ 
+         // skip space characters
+         if (isSpaceCharacter(codepoint))
++        {
++            offset += Character.charCount(codepoint);
+             continue;
++        }
+ 
+         // arabic
+         if ((codepoint >= 0x0600) && (codepoint <= 0x06ff))

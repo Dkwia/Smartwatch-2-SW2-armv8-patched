@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/about_icon" android:id="@id/preference_menu_about" android:title="@string/preference_menu_about_string" android:showAsAction="always" />
+    <item android:icon="@drawable/help_icon" android:id="@id/preference_menu_support" android:title="@string/preference_menu_support_string" android:showAsAction="always" />
+</menu>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?android:listPreferredItemHeight"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center" android:id="@id/icon" android:layout_width="@dimen/asf_icon_size" android:layout_height="@dimen/asf_icon_size" android:layout_marginLeft="@dimen/asf_list_item_image_padding" android:layout_marginRight="@dimen/asf_list_item_image_padding" />
+    <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <TextView android:textAppearance="?android:textAppearanceMedium" android:ellipsize="marquee" android:id="@id/title" android:fadingEdge="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="title" />
+        <TextView android:textAppearance="?android:textAppearanceSmall" android:id="@id/summary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/my_apps_item_edit_settings" android:maxLines="2" android:layout_alignLeft="@android:id/title" />
+    </LinearLayout>
+    <ImageView android:id="@id/drag_handle" android:background="@drawable/rearrange_icon" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_weight="0.0" />
+</LinearLayout>

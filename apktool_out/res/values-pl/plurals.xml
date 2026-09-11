@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">Usunąć tarcze zegarka?</item>
+        <item quantity="one">Usunąć tarczę zegarka?</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">Usunięto tarcze zegarka</item>
+        <item quantity="one">Usunięto tarczę zegarka</item>
+    </plurals>
+    <plurals name="wallpaper_list_confirm_delete_string">
+        <item quantity="other">Usunąć tapety?</item>
+        <item quantity="one">Usunąć tapetę?</item>
+    </plurals>
+    <plurals name="wallpaper_deleted_plural">
+        <item quantity="other">Tapety zostały usunięta</item>
+        <item quantity="one">Tapeta została usunięta</item>
+    </plurals>
+</resources>

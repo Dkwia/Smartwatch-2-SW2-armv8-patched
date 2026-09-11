@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="watch_face_list_confirm_delete_string">
+        <item quantity="other">删除表盘？</item>
+        <item quantity="one">删除表盘？</item>
+    </plurals>
+    <plurals name="watch_face_deleted_plural">
+        <item quantity="other">已删除表盘</item>
+        <item quantity="one">已删除表盘</item>
+    </plurals>
+    <plurals name="wallpaper_list_confirm_delete_string">
+        <item quantity="other">删除壁纸？</item>
+        <item quantity="one">删除壁纸？</item>
+    </plurals>
+    <plurals name="wallpaper_deleted_plural">
+        <item quantity="other">壁纸已删除</item>
+        <item quantity="one">壁纸已删除</item>
+    </plurals>
+</resources>

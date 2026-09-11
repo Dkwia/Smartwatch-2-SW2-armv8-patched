@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/animation_progress_small_1" />
+    <item android:drawable="@drawable/animation_progress_small_2" />
+    <item android:drawable="@drawable/animation_progress_small_3" />
+    <item android:drawable="@drawable/animation_progress_small_4" />
+    <item android:drawable="@drawable/animation_progress_small_5" />
+    <item android:drawable="@drawable/animation_progress_small_6" />
+    <item android:drawable="@drawable/animation_progress_small_7" />
+    <item android:drawable="@drawable/animation_progress_small_8" />
+    <item android:drawable="@drawable/animation_progress_small_9" />
+    <item android:drawable="@drawable/animation_progress_small_10" />
+</level-list>

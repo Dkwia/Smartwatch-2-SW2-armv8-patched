@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connected_ticker_text">%sconnected</string>
+    <string name="update_accessory_summary">Optimize functionality by updating to the latest firmware version</string>
+    <string name="extension_search_updated_sw2">Optimized for SW 2</string>
+    <string name="extension_search_compatible_sw2">Work w/ SmartWatch 2</string>
+    <string name="costanza_generic_error">Error. Please try again later.</string>
+</resources>
