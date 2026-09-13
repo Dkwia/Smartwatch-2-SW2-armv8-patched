@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.android.email.permission.READ_ATTACHMENT"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -19,14 +24,15 @@
     <uses-feature android:name="android.hardware.telephony" android:required="false"/>
     <application android:allowBackup="true" android:icon="@drawable/costanza_launcher_icn" android:label="@string/app_name" android:name="com.sonymobile.smartconnect.hostapp.costanza.CostanzaHostApplication" android:theme="@android:style/Theme.DeviceDefault.Light">
         <provider android:authorities="com.sonymobile.smartconnect.smartwatch2.db" android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.costanza.db.SyncDataProvider"/>
-        <activity android:excludeFromRecents="true" android:launchMode="singleInstance" android:name=".LaunchActivity" android:noHistory="true" android:theme="@android:style/Theme.NoDisplay">
+        <activity android:excludeFromRecents="true" android:exported="true" android:launchMode="singleInstance" android:name=".LaunchActivity" android:noHistory="true" android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="com.sonyericsson.extras.launch"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.ExtensionsListActivity">
+        <activity android:exported="true" android:name="com.sonymobile.smartconnect.hostapp.preferences.ExtensionsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
                 <category android:name="android.intent.category.MONKEY"/>
             </intent-filter>
             <intent-filter>
@@ -34,17 +40,17 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.AboutPreferences"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.PreferenceSupportActivity"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.costanza.StartupActivity"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.debugevents.LogActivity"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.watchfaces.WatchFaceActivity" android:theme="@style/Theme.Background"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.watchfaces.WatchFaceListActivity"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.extensions.MaxExtensionDialog" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
-        <activity android:name="com.sonymobile.smartconnect.hostapp.preferences.wallpapers.WallpapersListActivity"/>
-        <activity android:launchMode="singleTop" android:name="com.sonymobile.smartconnect.hostapp.preferences.myapps.MyAppsActivity"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.AboutPreferences"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.PreferenceSupportActivity"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.costanza.StartupActivity"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.debugevents.LogActivity"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.watchfaces.WatchFaceActivity" android:theme="@style/Theme.Background"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.watchfaces.WatchFaceListActivity"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.extensions.MaxExtensionDialog" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
+        <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.wallpapers.WallpapersListActivity"/>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.sonymobile.smartconnect.hostapp.preferences.myapps.MyAppsActivity"/>
         <provider android:authorities="com.sonymobile.smartconnect.hostapp.debugevents.LogProvider" android:exported="false" android:multiprocess="true" android:name="com.sonymobile.smartconnect.hostapp.debugevents.LogProvider"/>
-        <receiver android:enabled="true" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaEventReceiver">
+        <receiver android:enabled="true" android:exported="true" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaEventReceiver">
             <intent-filter>
                 <action android:name="com.sonyericsson.extras.settings"/>
                 <action android:name="com.sonyericsson.extras.aef.control.CLEAR_DISPLAY"/>
@@ -73,6 +79,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
-        <service android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaService"/>
+        <service android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaService"/>
     </application>
 </manifest>
