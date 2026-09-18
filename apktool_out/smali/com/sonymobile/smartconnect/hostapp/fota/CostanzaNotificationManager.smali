@@ -442,7 +442,12 @@
 
     move-result-object v5
 
+    :try_start_notif
     invoke-virtual {v4, p1, v5}, Landroid/app/NotificationManager;->notify(ILandroid/app/Notification;)V
+    :try_end_notif
+    .catch Ljava/lang/Throwable; {:try_start_notif .. :try_end_notif} :catch_notif
+
+    :catch_notif
 
     .line 276
     :cond_1

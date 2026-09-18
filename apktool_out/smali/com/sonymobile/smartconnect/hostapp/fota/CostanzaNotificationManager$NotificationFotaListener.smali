@@ -149,7 +149,12 @@
 
     move-result-object v2
 
+    :try_start_fota_notif
     invoke-virtual {v0, v1, v2}, Landroid/app/NotificationManager;->notify(ILandroid/app/Notification;)V
+    :try_end_fota_notif
+    .catch Ljava/lang/Throwable; {:try_start_fota_notif .. :try_end_fota_notif} :catch_fota_notif
+
+    :catch_fota_notif
 
     goto :goto_0
 .end method

@@ -403,12 +403,20 @@
 .end method
 
 .method public build()Landroid/app/Notification;
-    .locals 1
+    .locals 2
 
     .prologue
     .line 102
     iget-object v0, p0, Landroid/support/v4/app/NotificationCompatJellybean;->b:Landroid/app/Notification$Builder;
 
+    :try_start_0
+    const-string v1, "sw2_channel"
+
+    invoke-virtual {v0, v1}, Landroid/app/Notification$Builder;->setChannelId(Ljava/lang/String;)Landroid/app/Notification$Builder;
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+
+    :catch_0
     invoke-virtual {v0}, Landroid/app/Notification$Builder;->build()Landroid/app/Notification;
 
     move-result-object v0

@@ -139,11 +139,16 @@
     invoke-static {v2}, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;->access$402(Z)Z
 
     .line 318
+    :try_start_stop_fg
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService$ServiceCommunicationListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;->stopForeground(Z)V
+    :try_end_stop_fg
+    .catch Ljava/lang/Throwable; {:try_start_stop_fg .. :try_end_stop_fg} :catch_stop_fg
+
+    :catch_stop_fg
 
     .line 319
     return-void
@@ -343,9 +348,14 @@
 
     .line 290
     .local v0, "notification":Landroid/app/Notification;
+    :try_start_sf
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService$ServiceCommunicationListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;
 
     invoke-virtual {v1, v3, v0}, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;->startForeground(ILandroid/app/Notification;)V
+    :try_end_sf
+    .catch Ljava/lang/Throwable; {:try_start_sf .. :try_end_sf} :catch_sf
+
+    :catch_sf
 
     .line 297
     return-void

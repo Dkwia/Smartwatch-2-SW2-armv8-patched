@@ -289,6 +289,46 @@
     return-void
 .end method
 
+.method private initNotificationChannel()V
+    .locals 5
+
+    .prologue
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v1, 0x1a
+
+    if-lt v0, v1, :cond_0
+
+    :try_start_0
+    new-instance v0, Landroid/app/NotificationChannel;
+
+    const-string v1, "sw2_channel"
+
+    const-string v2, "SmartWatch 2"
+
+    const/4 v3, 0x2
+
+    invoke-direct {v0, v1, v2, v3}, Landroid/app/NotificationChannel;-><init>(Ljava/lang/String;Ljava/lang/CharSequence;I)V
+
+    const-string v1, "notification"
+
+    invoke-virtual {p0, v1}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/app/NotificationManager;
+
+    if-eqz v1, :cond_0
+
+    invoke-virtual {v1, v0}, Landroid/app/NotificationManager;->createNotificationChannel(Landroid/app/NotificationChannel;)V
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+
+    :catch_0
+    :cond_0
+    return-void
+.end method
+
 .method private isFirstStart()Z
     .locals 6
 
@@ -669,6 +709,8 @@
 
     .line 319
     invoke-direct/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->initialiseGoogleAnalytics()V
+
+    invoke-direct/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->initNotificationChannel()V
 
     .line 320
     invoke-static/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->initDebugFlag(Landroid/content/Context;)V
