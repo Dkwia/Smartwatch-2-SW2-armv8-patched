@@ -9,25 +9,31 @@ Compatibility patch for the Sony SmartWatch 2 companion application (`com.sonymo
    - Modern SoCs (Snapdragon 8 Gen 3/4/Elite, Dimensity 9300+) and modern 64-bit Android OS builds have dropped 32-bit execution entirely.
    - Cross-compiled a freestanding 64-bit `libprotocol.so` (`arm64-v8a`) exporting the necessary JNI protocol functions and native CIDs.
 
-2. **Android 12+ Manifest Enforcement**:
+2. **Target SDK & Direct Installation**:
+   - Updated `targetSdkVersion` to `28` (Android 9 Pie) to bypass Android 14/15/16's deprecated target SDK block.
+   - The APK can now be installed directly on-device by tapping the file without requiring ADB bypass flags.
+
+3. **Android 12+ Manifest Enforcement**:
    - Explicitly added `android:exported` to all activities, receivers, and services with intent filters.
 
-3. **Modern Permissions**:
+4. **Modern Permissions**:
    - Declared `BLUETOOTH_CONNECT`, `BLUETOOTH_SCAN`, and `POST_NOTIFICATIONS` for Android 12/13+.
 
-4. **Launcher Entry**:
+5. **Launcher Entry**:
    - Added `android.intent.category.LAUNCHER` to `ExtensionsListActivity` so the companion settings UI can be opened directly from the home screen launcher without requiring Sony Smart Connect.
 
-5. **Signature & Alignment**:
+6. **Signature & Alignment**:
    - Aligned to 4-byte boundaries with `zipalign`.
    - Signed with v1, v2, and v3 signature schemes.
 
 ## Installation
 
-Install using ADB:
+Download the release APK and tap to install directly on your device.
+
+Alternatively, install using ADB:
 
 ```bash
-adb install --bypass-low-target-sdk-block SmartWatch_2_SW2_arm64_fixed.apk
+adb install SmartWatch_2_SW2_arm64_fixed.apk
 ```
 
 ### Post-Install Setup

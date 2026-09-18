@@ -2,7 +2,7 @@
 set -e
 
 mkdir -p native_build
-mkdir -p apktool_out/lib/arm64-v8a apktool_out/lib/armeabi-v7a
+mkdir -p apktool_out/lib/arm64-v8a
 
 aarch64-linux-gnu-gcc -shared -fPIC -O2 -fno-stack-protector -fno-builtin \
     -I/usr/lib/jvm/java-21-openjdk-amd64/include \
@@ -10,9 +10,6 @@ aarch64-linux-gnu-gcc -shared -fPIC -O2 -fno-stack-protector -fno-builtin \
     -o native_build/libprotocol.so native_build/libprotocol.c
 
 cp native_build/libprotocol.so apktool_out/lib/arm64-v8a/libprotocol.so
-if [ -f apktool_out/lib/armeabi/libprotocol.so ]; then
-    cp apktool_out/lib/armeabi/libprotocol.so apktool_out/lib/armeabi-v7a/libprotocol.so
-fi
 
 apktool b apktool_out -o sw2_rebuilt.apk
 zipalign -p -f -v 4 sw2_rebuilt.apk SmartWatch_2_SW2_arm64_fixed.apk

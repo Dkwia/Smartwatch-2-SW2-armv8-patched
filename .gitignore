@@ -3,6 +3,8 @@
 *.idsig
 sw2.apk
 sw2_rebuilt.apk
+release.apk
+SmartWatch_2_SW2_v1.6.31_arm64_release.apk
 extracted/
 jadx_src/
 test.c
