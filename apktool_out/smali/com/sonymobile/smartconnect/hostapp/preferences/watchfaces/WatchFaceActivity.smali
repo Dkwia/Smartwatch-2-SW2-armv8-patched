@@ -1245,9 +1245,11 @@
 
     move-result-object v0
 
+    if-eqz v0, :cond_no_ab
+
     invoke-virtual {v0, p1}, Landroid/app/ActionBar;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 325
+    :cond_no_ab
     return-void
 .end method
 

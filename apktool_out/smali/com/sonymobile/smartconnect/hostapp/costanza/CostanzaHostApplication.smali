@@ -283,44 +283,9 @@
 .end method
 
 .method private initialiseGoogleAnalytics()V
-    .locals 6
+    .locals 0
 
     .prologue
-    .line 717
-    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v1
-
-    invoke-static {v1}, Lcom/sonymobile/gahelper/GaHelper;->readAndSetGaEnabled(Landroid/content/Context;)V
-
-    .line 718
-    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v1
-
-    invoke-static {v1}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance(Landroid/content/Context;)Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
-
-    move-result-object v0
-
-    .line 719
-    .local v0, "analytics":Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
-    const-string v1, "app_actions"
-
-    const-string v2, "created"
-
-    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-
-    move-result-object v3
-
-    invoke-virtual {v3}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
-
-    move-result-object v3
-
-    const-wide/16 v4, 0x1
-
-    invoke-virtual/range {v0 .. v5}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->sendEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
-
-    .line 720
     return-void
 .end method
 
@@ -375,77 +340,9 @@
 .end method
 
 .method private showErrorNotification()V
-    .locals 5
+    .locals 0
 
     .prologue
-    const v4, 0x7f070017
-
-    .line 633
-    const-string v2, "notification"
-
-    invoke-virtual {p0, v2}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Landroid/app/NotificationManager;
-
-    .line 635
-    .local v1, "notificationManager":Landroid/app/NotificationManager;
-    new-instance v2, Landroid/support/v4/app/NotificationCompat$Builder;
-
-    invoke-direct {v2, p0}, Landroid/support/v4/app/NotificationCompat$Builder;-><init>(Landroid/content/Context;)V
-
-    const/high16 v3, 0x7f070000
-
-    invoke-virtual {p0, v3}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Landroid/support/v4/app/NotificationCompat$Builder;->setContentTitle(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$Builder;
-
-    move-result-object v2
-
-    invoke-virtual {p0, v4}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Landroid/support/v4/app/NotificationCompat$Builder;->setContentText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$Builder;
-
-    move-result-object v2
-
-    const v3, 0x7f020092
-
-    invoke-virtual {v2, v3}, Landroid/support/v4/app/NotificationCompat$Builder;->setSmallIcon(I)Landroid/support/v4/app/NotificationCompat$Builder;
-
-    move-result-object v2
-
-    new-instance v3, Landroid/support/v4/app/NotificationCompat$BigTextStyle;
-
-    invoke-direct {v3}, Landroid/support/v4/app/NotificationCompat$BigTextStyle;-><init>()V
-
-    invoke-virtual {p0, v4}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getString(I)Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-virtual {v3, v4}, Landroid/support/v4/app/NotificationCompat$BigTextStyle;->bigText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$BigTextStyle;
-
-    move-result-object v3
-
-    invoke-virtual {v2, v3}, Landroid/support/v4/app/NotificationCompat$Builder;->setStyle(Landroid/support/v4/app/NotificationCompat$Style;)Landroid/support/v4/app/NotificationCompat$Builder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Landroid/support/v4/app/NotificationCompat$Builder;->build()Landroid/app/Notification;
-
-    move-result-object v0
-
-    .line 643
-    .local v0, "n":Landroid/app/Notification;
-    const/4 v2, 0x0
-
-    invoke-virtual {v1, v2, v0}, Landroid/app/NotificationManager;->notify(ILandroid/app/Notification;)V
-
-    .line 644
     return-void
 .end method
 
@@ -755,8 +652,7 @@
     .locals 1
 
     .prologue
-    .line 723
-    iget-boolean v0, p0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->mSecurityProblem:Z
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -858,13 +754,11 @@
 
     invoke-virtual {v0, v6}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->performRegistration(I)V
     :try_end_1
-    .catch Ljava/lang/SecurityException; {:try_start_1 .. :try_end_1} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_0
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 336
     const/16 v76, 0x1
 
-    .line 368
     :cond_3
     :goto_0
     :try_start_2
@@ -874,6 +768,7 @@
 
     move-object/from16 v0, p0
 
+    :try_start_hap
     invoke-static {v0, v6}, Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;->getHostAppByPackage(Landroid/content/Context;Ljava/lang/String;)Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;
 
     move-result-object v6
@@ -881,6 +776,16 @@
     move-object/from16 v0, p0
 
     iput-object v6, v0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->mHostApp:Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;
+    :try_end_hap
+    .catch Ljava/lang/Throwable; {:try_start_hap .. :try_end_hap} :catch_hap
+    goto :goto_after_hap
+
+    :catch_hap
+    move-exception v6
+    const/4 v6, 0x0
+    move-object/from16 v0, p0
+    iput-object v6, v0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->mHostApp:Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;
+    :goto_after_hap
 
     .line 370
     new-instance v10, Lcom/sonymobile/smartconnect/hostapp/costanza/db/MessageIdProviderImpl;
@@ -2743,45 +2648,15 @@
 
     invoke-virtual {v0, v6}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->performRegistration(I)V
     :try_end_3
-    .catch Ljava/lang/SecurityException; {:try_start_3 .. :try_end_3} :catch_0
+    .catch Ljava/lang/Throwable; {:try_start_3 .. :try_end_3} :catch_0
     .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
     goto/16 :goto_0
 
-    .line 357
-    .end local v74    # "hostApp":Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;
-    .end local v84    # "updates":I
     :catch_0
     move-exception v70
 
-    .line 359
-    .local v70, "e":Ljava/lang/SecurityException;
-    const/4 v6, 0x1
-
-    :try_start_4
-    move-object/from16 v0, p0
-
-    iput-boolean v6, v0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->mSecurityProblem:Z
-
-    .line 360
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_9
-
-    .line 361
-    const-string v6, "Host app has encountered a SecurityException, the cause is most likely that Host app and Smart connect use different certificates."
-
-    invoke-static {v6}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e(Ljava/lang/String;)Z
-
-    .line 364
-    :cond_9
-    invoke-direct/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->showErrorNotification()V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_0
-
-    goto :goto_1
+    goto/16 :goto_0
 
     .line 318
     .end local v70    # "e":Ljava/lang/SecurityException;

@@ -994,9 +994,8 @@
 
     move-result v10
 
-    if-eqz v10, :cond_1
+    goto :cond_1
 
-    .line 109
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v10
@@ -1009,33 +1008,27 @@
 
     invoke-virtual {v10}, Landroid/widget/Toast;->show()V
 
-    .line 111
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->finish()V
 
-    .line 250
     :cond_0
     :goto_0
     return-void
 
-    .line 115
     :cond_1
     iput-object p0, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mContext:Landroid/content/Context;
 
-    .line 117
     new-instance v10, Ljava/util/Hashtable;
 
     invoke-direct {v10}, Ljava/util/Hashtable;-><init>()V
 
     iput-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionHash:Ljava/util/Hashtable;
 
-    .line 118
     invoke-virtual {v3}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->getExtensionManager()Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;
 
     move-result-object v10
 
     iput-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionManager:Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;
 
-    .line 121
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getLastNonConfigurationInstance()Ljava/lang/Object;
 
     move-result-object v10
@@ -1044,25 +1037,26 @@
 
     iput-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
 
-    .line 122
     iget-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
 
     if-nez v10, :cond_2
 
-    .line 123
     const-string v10, "ExtensionList was null"
 
     invoke-static {v10}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d(Ljava/lang/String;)Z
 
-    .line 125
     :cond_2
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v10
 
+    if-eqz v10, :cond_no_ab
+
     const v11, 0x7f02008d
 
     invoke-virtual {v10, v11}, Landroid/app/ActionBar;->setIcon(I)V
+
+    :cond_no_ab
 
     .line 127
     iget-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mDialogManager:Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;
@@ -1251,9 +1245,7 @@
 
     invoke-virtual {v5, v1, v10}, Ljava/lang/reflect/Field;->setBoolean(Ljava/lang/Object;Z)V
     :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_0
-    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     goto/16 :goto_0
 

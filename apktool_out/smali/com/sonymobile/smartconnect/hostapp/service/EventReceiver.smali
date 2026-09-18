@@ -77,8 +77,11 @@
     .local v2, "i":Landroid/content/Intent;
     invoke-virtual {v2, p3}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    .line 41
+    :try_start_er
     invoke-virtual {p1, v2}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
+    :try_end_er
+    .catch Ljava/lang/Throwable; {:try_start_er .. :try_end_er} :catch_er
 
+    :catch_er
     goto :goto_0
 .end method

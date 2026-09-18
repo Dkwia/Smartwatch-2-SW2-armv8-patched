@@ -1825,17 +1825,17 @@
 
     move-result-object v0
 
-    .line 75
-    .local v0, "actionBar":Landroid/app/ActionBar;
+    if-eqz v0, :cond_no_ab
+
     invoke-virtual {v0, v4}, Landroid/app/ActionBar;->setHomeButtonEnabled(Z)V
 
-    .line 76
     invoke-virtual {v0, v4}, Landroid/app/ActionBar;->setDisplayHomeAsUpEnabled(Z)V
 
-    .line 77
     const v2, 0x7f07004d
 
     invoke-virtual {v0, v2}, Landroid/app/ActionBar;->setTitle(I)V
+
+    :cond_no_ab
 
     .line 78
     const v2, 0x7f0d0038
