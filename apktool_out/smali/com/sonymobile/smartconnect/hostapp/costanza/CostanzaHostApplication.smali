@@ -697,6 +697,17 @@
     return v0
 .end method
 
+.method protected attachBaseContext(Landroid/content/Context;)V
+    .locals 0
+
+    .prologue
+    invoke-super {p0, p1}, Landroid/app/Application;->attachBaseContext(Landroid/content/Context;)V
+
+    invoke-static {p1}, Lcom/sonymobile/smartconnect/hostapp/CrashHandler;->init(Landroid/content/Context;)V
+
+    return-void
+.end method
+
 .method public declared-synchronized onCreate()V
     .locals 86
 
@@ -706,6 +717,8 @@
 
     :try_start_0
     invoke-super/range {p0 .. p0}, Landroid/app/Application;->onCreate()V
+
+    invoke-static/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/CrashHandler;->init(Landroid/content/Context;)V
 
     .line 319
     invoke-direct/range {p0 .. p0}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->initialiseGoogleAnalytics()V

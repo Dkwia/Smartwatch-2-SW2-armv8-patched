@@ -981,6 +981,8 @@
     .line 106
     invoke-super {p0, p1}, Landroid/preference/PreferenceActivity;->onCreate(Landroid/os/Bundle;)V
 
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/CrashHandler;->init(Landroid/content/Context;)V
+
     .line 107
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getApplicationContext()Landroid/content/Context;
 
