@@ -78,12 +78,54 @@
 
     :cond_0
     :goto_0
+    :try_start_1
+    sget-object v0, Lcom/sonymobile/smartconnect/hostapp/CrashHandler;->sContext:Landroid/content/Context;
+
+    if-eqz v0, :cond_1
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/content/Context;->getExternalFilesDir(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1
+
+    new-instance v1, Ljava/io/File;
+
+    const-string v2, "sw2_crash.log"
+
+    invoke-direct {v1, v0, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    new-instance v2, Ljava/io/FileOutputStream;
+
+    invoke-direct {v2, v1}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+
+    invoke-virtual {p0}, Ljava/lang/String;->getBytes()[B
+
+    move-result-object v1
+
+    invoke-virtual {v2, v1}, Ljava/io/FileOutputStream;->write([B)V
+
+    invoke-virtual {v2}, Ljava/io/FileOutputStream;->flush()V
+
+    invoke-virtual {v2}, Ljava/io/FileOutputStream;->close()V
+    :try_end_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
+
+    :cond_1
+    :goto_1
     return-void
 
     :catch_0
     move-exception v0
 
     goto :goto_0
+
+    :catch_1
+    move-exception v0
+
+    goto :goto_1
 .end method
 
 

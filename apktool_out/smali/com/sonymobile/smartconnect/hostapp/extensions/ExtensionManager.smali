@@ -3906,7 +3906,7 @@
 
     .line 637
     :cond_1
-    throw v3
+    return-void
 
     .line 588
     .restart local v2    # "resolver":Landroid/content/ContentResolver;
@@ -5829,12 +5829,20 @@
     .line 465
     :try_start_2
     invoke-interface {v9}, Landroid/database/Cursor;->close()V
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
     .line 464
     :cond_0
-    throw v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    invoke-direct {v0, v1}, Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;->loadSyncManagerExtensions(Ljava/util/Hashtable;)V
+
+    monitor-exit p0
+
+    return-void
 
     .line 387
     .end local v9    # "cur":Landroid/database/Cursor;

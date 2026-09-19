@@ -40,6 +40,12 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity-alias android:exported="true" android:name=".SettingsActivity" android:targetActivity="com.sonymobile.smartconnect.hostapp.preferences.ExtensionsListActivity">
+            <intent-filter>
+                <action android:name="com.sonyericsson.extras.SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity-alias>
         <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.AboutPreferences"/>
         <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.preferences.PreferenceSupportActivity"/>
         <activity android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.costanza.StartupActivity"/>

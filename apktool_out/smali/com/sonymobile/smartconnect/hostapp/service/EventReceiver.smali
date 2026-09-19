@@ -60,7 +60,12 @@
     invoke-virtual {v1, v3}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
 
     .line 37
+    :try_start_act
     invoke-virtual {p1, v1}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    :try_end_act
+    .catch Ljava/lang/Throwable; {:try_start_act .. :try_end_act} :catch_act
+
+    :catch_act
 
     .line 43
     .end local v1    # "activityIntent":Landroid/content/Intent;

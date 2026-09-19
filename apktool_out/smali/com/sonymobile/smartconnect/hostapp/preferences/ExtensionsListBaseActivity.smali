@@ -206,19 +206,32 @@
     .end annotation
 
     .prologue
+    :try_start_0
     .line 705
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionHash:Ljava/util/Hashtable;
+
+    if-eqz v1, :cond_0
 
     invoke-virtual {v1}, Ljava/util/Hashtable;->clear()V
 
     .line 706
+    :cond_0
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionManager:Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;
 
+    if-eqz v1, :cond_1
+
     iget-object v2, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionHash:Ljava/util/Hashtable;
+
+    if-eqz v2, :cond_1
 
     invoke-virtual {v1, v2}, Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;->loadSmartConnectExtensions(Ljava/util/Hashtable;)V
 
     .line 707
+    :cond_1
+    iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionHash:Ljava/util/Hashtable;
+
+    if-eqz v1, :cond_2
+
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionHash:Ljava/util/Hashtable;
@@ -228,10 +241,23 @@
     move-result-object v1
 
     invoke-direct {v0, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 708
-    .local v0, "list":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;>;"
     return-object v0
+
+    :cond_2
+    :goto_0
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    return-object v0
+
+    :catch_0
+    move-exception v1
+
+    goto :goto_0
 .end method
 
 .method private isFilteredOut(Ljava/lang/String;)Z
@@ -448,12 +474,16 @@
     .locals 4
 
     .prologue
+    :try_start_0
     .line 390
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionManager:Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;
+
+    if-eqz v0, :cond_0
 
     invoke-virtual {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;->addExtensionsChangeListener(Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager$ExtensionsChangeListener;)V
 
     .line 391
+    :cond_0
     new-instance v0, Landroid/os/HandlerThread;
 
     const-string v1, "PreferenceWaitThread"
@@ -507,8 +537,11 @@
     iget-object v3, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionObserver:Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$ExtensionObserver;
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 399
+    :catch_0
     return-void
 .end method
 
@@ -568,9 +601,12 @@
     :try_start_0
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionManager:Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;
 
+    if-eqz v0, :cond_ext_mgr
+
     invoke-virtual {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager;->removeExtensionsChangeListener(Lcom/sonymobile/smartconnect/hostapp/extensions/ExtensionManager$ExtensionsChangeListener;)V
 
     .line 403
+    :cond_ext_mgr
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionObserver:Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$ExtensionObserver;
 
     if-eqz v0, :cond_0
@@ -609,13 +645,20 @@
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->quit()Z
     :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 413
     :cond_1
+    :goto_0
     monitor-exit p0
 
     return-void
+
+    :catch_0
+    move-exception v0
+
+    goto :goto_0
 
     .line 402
     :catchall_0
@@ -647,6 +690,8 @@
     .local v0, "extensions":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;>;"
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
 
+    if-eqz v1, :cond_not_eq
+
     invoke-virtual {v1, v0}, Ljava/util/ArrayList;->equals(Ljava/lang/Object;)Z
 
     move-result v1
@@ -654,20 +699,28 @@
     if-nez v1, :cond_0
 
     .line 691
+    :cond_not_eq
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionObserver:Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$ExtensionObserver;
 
     const/4 v2, 0x1
 
     invoke-virtual {v1, v2}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$ExtensionObserver;->onChange(Z)V
     :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 694
     .end local v0    # "extensions":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;>;"
     :cond_0
+    :goto_0
     monitor-exit p0
 
     return-void
+
+    :catch_0
+    move-exception v1
+
+    goto :goto_0
 
     .line 688
     :catchall_0
@@ -682,6 +735,7 @@
     .locals 9
 
     .prologue
+    :try_start_0
     .line 449
     const-string v7, "featuredAppsPrefKey"
 
@@ -689,18 +743,24 @@
 
     move-result-object v1
 
-    check-cast v1, Landroid/preference/PreferenceCategory;
-
     .line 450
-    .local v1, "featuredApplications":Landroid/preference/PreferenceCategory;
-    invoke-virtual {v1}, Landroid/preference/PreferenceCategory;->removeAll()V
+    .local v1, "featuredApplications":Landroid/preference/Preference;
+    instance-of v7, v1, Landroid/preference/PreferenceCategory;
 
-    .line 451
-    const/4 v7, 0x0
+    if-eqz v7, :cond_check_gplay
 
-    invoke-virtual {v1, v7}, Landroid/preference/PreferenceCategory;->setOrderingAsAdded(Z)V
+    move-object v7, v1
+
+    check-cast v7, Landroid/preference/PreferenceCategory;
+
+    invoke-virtual {v7}, Landroid/preference/PreferenceCategory;->removeAll()V
+
+    const/4 v8, 0x0
+
+    invoke-virtual {v7, v8}, Landroid/preference/PreferenceCategory;->setOrderingAsAdded(Z)V
 
     .line 455
+    :cond_check_gplay
     iget-boolean v7, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mIsGooglePlayInstalled:Z
 
     if-eqz v7, :cond_2
@@ -718,24 +778,38 @@
 
     move-result-object v5
 
-    check-cast v5, Landroid/preference/PreferenceCategory;
-
     .line 464
-    .local v5, "prelistedApplications":Landroid/preference/PreferenceCategory;
-    iget-object v7, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
+    .local v5, "prelistedApplications":Landroid/preference/Preference;
+    instance-of v7, v5, Landroid/preference/PreferenceCategory;
 
-    invoke-virtual {v7}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+    if-nez v7, :cond_prelisted_ok
+
+    goto/16 :goto_end_real
+
+    :cond_prelisted_ok
+    move-object v7, v5
+
+    check-cast v7, Landroid/preference/PreferenceCategory;
+
+    iget-object v8, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
+
+    if-eqz v8, :cond_3
+
+    iget-object v8, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
+
+    invoke-virtual {v8}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
 
     move-result-object v3
 
+    .line 465
     .local v3, "i$":Ljava/util/Iterator;
     :cond_0
     :goto_1
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v7
+    move-result v8
 
-    if-eqz v7, :cond_3
+    if-eqz v8, :cond_3
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -743,71 +817,68 @@
 
     check-cast v0, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;
 
-    .line 465
+    .line 466
     .local v0, "extension":Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getParentPackageName()Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v8
 
-    if-nez v7, :cond_0
+    if-nez v8, :cond_0
 
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getPackageName()Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v8
 
-    const-string v8, ".ctrl"
+    const-string v2, ".ctrl"
 
-    invoke-virtual {v7, v8}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
+    invoke-virtual {v8, v2}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
 
-    move-result v7
+    move-result v8
 
-    if-nez v7, :cond_0
+    if-nez v8, :cond_0
 
     .line 474
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getNotificationApiVersion()I
 
-    move-result v7
+    move-result v8
 
-    if-nez v7, :cond_1
+    if-nez v8, :cond_1
 
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getControlApiVersion()I
 
-    move-result v7
+    move-result v8
 
-    if-nez v7, :cond_1
+    if-nez v8, :cond_1
 
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getWidgetApiVersion()I
 
-    move-result v7
+    move-result v8
 
-    if-eqz v7, :cond_0
+    if-eqz v8, :cond_0
 
     .line 483
     :cond_1
     invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;->getPackageName()Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v8
 
-    invoke-virtual {v5, v7}, Landroid/preference/PreferenceCategory;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
+    invoke-virtual {v7, v8}, Landroid/preference/PreferenceCategory;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
 
     move-result-object v6
 
-    check-cast v6, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
-
     .line 486
-    .local v6, "prelistedPreference":Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
+    .local v6, "prelistedPreference":Landroid/preference/Preference;
     if-eqz v6, :cond_0
 
     .line 487
-    invoke-virtual {v5, v6}, Landroid/preference/PreferenceCategory;->removePreference(Landroid/preference/Preference;)Z
+    invoke-virtual {v7, v6}, Landroid/preference/PreferenceCategory;->removePreference(Landroid/preference/Preference;)Z
 
     goto :goto_1
 
     .line 458
     .end local v0    # "extension":Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;
     .end local v3    # "i$":Ljava/util/Iterator;
-    .end local v5    # "prelistedApplications":Landroid/preference/PreferenceCategory;
-    .end local v6    # "prelistedPreference":Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
+    .end local v6    # "prelistedPreference":Landroid/preference/Preference;
     :cond_2
     const v7, 0x7f050003
 
@@ -816,37 +887,46 @@
     goto :goto_0
 
     .line 492
-    .restart local v3    # "i$":Ljava/util/Iterator;
-    .restart local v5    # "prelistedApplications":Landroid/preference/PreferenceCategory;
     :cond_3
     const/4 v2, 0x0
 
+    .line 493
     .local v2, "i":I
     :goto_2
-    invoke-virtual {v5}, Landroid/preference/PreferenceCategory;->getPreferenceCount()I
+    invoke-virtual {v7}, Landroid/preference/PreferenceCategory;->getPreferenceCount()I
 
-    move-result v7
+    move-result v8
 
-    if-ge v2, v7, :cond_5
+    if-ge v2, v8, :cond_5
 
-    .line 493
-    invoke-virtual {v5, v2}, Landroid/preference/PreferenceCategory;->getPreference(I)Landroid/preference/Preference;
+    .line 494
+    invoke-virtual {v7, v2}, Landroid/preference/PreferenceCategory;->getPreference(I)Landroid/preference/Preference;
 
     move-result-object v4
 
-    check-cast v4, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
-
     .line 495
-    .local v4, "pref":Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
-    invoke-virtual {v4}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->getFilter()Ljava/lang/String;
+    .local v4, "pref":Landroid/preference/Preference;
+    instance-of v8, v4, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
 
-    move-result-object v7
+    if-nez v8, :cond_icon_ok
 
-    invoke-direct {p0, v7}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->isFilteredOut(Ljava/lang/String;)Z
+    goto :goto_3
 
-    move-result v7
+    :cond_icon_ok
+    move-object v8, v4
 
-    if-eqz v7, :cond_4
+    check-cast v8, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
+
+    .line 496
+    invoke-virtual {v8}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->getFilter()Ljava/lang/String;
+
+    move-result-object v8
+
+    invoke-direct {p0, v8}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->isFilteredOut(Ljava/lang/String;)Z
+
+    move-result v8
+
+    if-eqz v8, :cond_4
 
     .line 492
     :goto_3
@@ -856,43 +936,67 @@
 
     .line 499
     :cond_4
-    const v7, 0x7fffffff
+    move-object v8, v4
 
-    invoke-virtual {v4, v7}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setOrder(I)V
+    check-cast v8, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
+
+    const v3, 0x7fffffff
+
+    invoke-virtual {v8, v3}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setOrder(I)V
 
     .line 500
-    const v7, 0x7f07003a
+    const v3, 0x7f07003a
 
-    invoke-virtual {v4, v7}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setSummary(I)V
+    invoke-virtual {v8, v3}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setSummary(I)V
 
     .line 501
-    new-instance v7, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$8;
+    new-instance v3, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$8;
 
-    invoke-direct {v7, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$8;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;)V
+    invoke-direct {v3, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$8;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;)V
 
-    invoke-virtual {v4, v7}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setOnPreferenceClickListener(Landroid/preference/Preference$OnPreferenceClickListener;)V
+    invoke-virtual {v8, v3}, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->setOnPreferenceClickListener(Landroid/preference/Preference$OnPreferenceClickListener;)V
 
     .line 520
-    invoke-virtual {v1, v4}, Landroid/preference/PreferenceCategory;->addPreference(Landroid/preference/Preference;)Z
+    instance-of v8, v1, Landroid/preference/PreferenceCategory;
 
+    if-eqz v8, :cond_goto_3
+
+    move-object v8, v1
+
+    check-cast v8, Landroid/preference/PreferenceCategory;
+
+    invoke-virtual {v8, v4}, Landroid/preference/PreferenceCategory;->addPreference(Landroid/preference/Preference;)Z
+
+    :cond_goto_3
     goto :goto_3
 
     .line 525
-    .end local v4    # "pref":Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;
+    .end local v4    # "pref":Landroid/preference/Preference;
     :cond_5
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
 
     move-result-object v7
 
+    if-eqz v7, :cond_goto_end
+
     invoke-virtual {v7, v5}, Landroid/preference/PreferenceScreen;->removePreference(Landroid/preference/Preference;)Z
 
     .line 527
+    :cond_goto_end
     const/4 v7, 0x1
 
     iput-boolean v7, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mIsExtensionListUpdated:Z
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 528
+    :goto_end_real
     return-void
+
+    :catch_0
+    move-exception v7
+
+    goto :goto_end_real
 .end method
 
 
@@ -1650,6 +1754,7 @@
     .locals 2
 
     .prologue
+    :try_start_0
     .line 422
     invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getExtensions()Ljava/util/ArrayList;
 
@@ -1657,7 +1762,16 @@
 
     .line 423
     .local v0, "newExtensions":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Lcom/sonymobile/smartconnect/hostapp/extensions/Extension;>;"
+    if-nez v0, :cond_null_ext
+
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    :cond_null_ext
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mExtensionList:Ljava/util/ArrayList;
+
+    if-eqz v1, :cond_1
 
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->equals(Ljava/lang/Object;)Z
 
@@ -1696,8 +1810,15 @@
     invoke-direct {v1, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity$7;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;)V
 
     invoke-virtual {p0, v1}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->runOnUiThread(Ljava/lang/Runnable;)V
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     goto :goto_0
+
+    :catch_0
+    move-exception v1
+
+    return-void
 .end method
 
 .method public searchExtensions()V

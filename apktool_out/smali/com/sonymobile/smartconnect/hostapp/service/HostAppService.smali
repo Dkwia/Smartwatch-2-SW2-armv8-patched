@@ -226,6 +226,7 @@
 
     if-eqz v3, :cond_2
 
+    :try_start_reg
     .line 210
     invoke-static {p0, p2}, Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;->isRegistered(Landroid/content/Context;Ljava/lang/String;)Z
 
@@ -264,7 +265,10 @@
     .end local v1    # "hostApp":Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;
     :cond_1
     invoke-static {p0, p2}, Lcom/sonymobile/smartconnect/hostapp/HostAppAefConfig;->updateHostAppVersion(Landroid/content/Context;Ljava/lang/String;)I
+    :try_end_reg
+    .catch Ljava/lang/Throwable; {:try_start_reg .. :try_end_reg} :catch_reg
 
+    :catch_reg
     .line 230
     :cond_2
     const-string v3, "Address"
@@ -341,7 +345,12 @@
     :cond_5
     iget-object v3, p0, Lcom/sonymobile/smartconnect/hostapp/service/HostAppService;->mIntentDelegator:Lcom/sonymobile/smartconnect/hostapp/extensions/IncomingIntentDelegator;
 
+    :try_start_del
     invoke-virtual {v3, p1}, Lcom/sonymobile/smartconnect/hostapp/extensions/IncomingIntentDelegator;->delegateIntent(Landroid/content/Intent;)Z
+    :try_end_del
+    .catch Ljava/lang/Throwable; {:try_start_del .. :try_end_del} :catch_del
+
+    :catch_del
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 

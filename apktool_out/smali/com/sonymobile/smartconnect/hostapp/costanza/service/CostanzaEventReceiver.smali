@@ -91,7 +91,7 @@
 
     move-result-object v3
 
-    const-string v4, "SettingsActivity"
+    const-string v4, "com.sonymobile.smartconnect.hostapp.preferences.ExtensionsListActivity"
 
     invoke-direct {v2, v3, v4}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
