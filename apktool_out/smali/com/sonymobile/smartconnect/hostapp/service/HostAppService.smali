@@ -259,7 +259,7 @@
     invoke-virtual {v1, p3}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->performRegistration(I)V
 
     .line 216
-    invoke-virtual {v1}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->requestReset()V
+    nop
 
     .line 221
     .end local v1    # "hostApp":Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;

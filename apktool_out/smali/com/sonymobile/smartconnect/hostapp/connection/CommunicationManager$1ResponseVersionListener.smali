@@ -398,28 +398,9 @@
     if-eqz v1, :cond_9
 
     .line 1039
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_8
-
-    const-string v2, "Forced factory reset from prefs"
-
-    invoke-static {v2}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d(Ljava/lang/String;)Z
-
-    .line 1040
-    :cond_8
     iget-object v2, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$1ResponseVersionListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
 
     invoke-static {v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->access$1300(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;)V
-
-    .line 1041
-    iget-object v2, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$1ResponseVersionListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
-
-    invoke-virtual {v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->sendFactoryResetMessage()V
-
-    goto/16 :goto_0
 
     .line 1043
     :cond_9
