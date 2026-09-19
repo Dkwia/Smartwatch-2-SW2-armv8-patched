@@ -139,7 +139,7 @@
 
     move-result-object v7
 
-    invoke-virtual {v4, v7}, Landroid/bluetooth/BluetoothDevice;->createInsecureRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
+    invoke-static {v4, v7}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->connectRfcommSocket(Landroid/bluetooth/BluetoothDevice;Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
@@ -151,12 +151,9 @@
 
     .line 504
     :try_start_2
-    invoke-virtual {v6}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    const/4 v3, 0x1
     :try_end_2
     .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
-
-    .line 505
-    const/4 v3, 0x1
 
     .line 514
     :cond_1

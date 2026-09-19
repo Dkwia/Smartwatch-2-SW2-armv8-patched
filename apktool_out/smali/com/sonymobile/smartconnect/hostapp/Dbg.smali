@@ -26,7 +26,7 @@
     invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 
     .line 32
-    const/4 v0, 0x0
+    const/4 v0, 0x1
 
     sput-boolean v0, Lcom/sonymobile/smartconnect/hostapp/Dbg;->sDebug:Z
 

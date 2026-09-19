@@ -104,6 +104,17 @@ static void set_boolean_field(JNIEnv *env, jobject obj, const char *fieldName, j
     }
 }
 
+static void set_object_field(JNIEnv *env, jobject obj, const char *fieldName, const char *sig, jobject val) {
+    if (!obj) return;
+    jclass clazz = (*env)->GetObjectClass(env, obj);
+    jfieldID fid = (*env)->GetFieldID(env, clazz, fieldName, sig);
+    if (fid) {
+        (*env)->SetObjectField(env, obj, fid, val);
+    } else {
+        (*env)->ExceptionClear(env);
+    }
+}
+
 static void set_string_field(JNIEnv *env, jobject obj, const char *fieldName, const char *val) {
     if (!obj) return;
     jclass clazz = (*env)->GetObjectClass(env, obj);
@@ -150,6 +161,17 @@ static jboolean get_boolean_field_safe(JNIEnv *env, jobject obj, const char *fie
     return def;
 }
 
+static jobject get_object_field_safe(JNIEnv *env, jobject obj, const char *fieldName, const char *sig) {
+    if (!obj) return NULL;
+    jclass clazz = (*env)->GetObjectClass(env, obj);
+    jfieldID fid = (*env)->GetFieldID(env, clazz, fieldName, sig);
+    if (fid) {
+        return (*env)->GetObjectField(env, obj, fid);
+    }
+    (*env)->ExceptionClear(env);
+    return NULL;
+}
+
 static jobjectArray wrap_in_2d_byte_array(JNIEnv *env, const uint8_t *buffer, uint32_t totalLen, uint32_t msgId) {
     jclass byteArrayClass = (*env)->FindClass(env, "[B");
     if (!byteArrayClass) return NULL;
@@ -182,7 +204,7 @@ static jobjectArray wrap_in_2d_byte_array(JNIEnv *env, const uint8_t *buffer, ui
         write_u32_le(fragHdr + 8, msgId);
         write_u16_le(fragHdr + 12, (uint16_t)i);
         write_u16_le(fragHdr + 14, (uint16_t)numChunks);
-        write_u32_le(fragHdr + 16, totalLen);
+        write_u32_le(fragHdr + 16, chunkLen);
         my_memcpy(fragHdr + 20, buffer + offset, chunkLen);
 
         jbyteArray b = (*env)->NewByteArray(env, fragLen);
@@ -215,22 +237,23 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
         if (len < 20) return NULL;
         uint16_t fragIdx = read_u16_le(data + 12);
         uint16_t totalFrags = read_u16_le(data + 14);
-        uint32_t origLen = read_u32_le(data + 16);
         uint32_t payloadLen = len > 20 ? (len - 20) : 0;
 
         if (fragIdx == 0) {
             s_frag_total = totalFrags;
             s_frag_received = 0;
-            s_frag_orig_len = origLen;
+            s_frag_orig_len = 0;
         }
         if (fragIdx * 492 + payloadLen <= sizeof(s_frag_buf)) {
             my_memcpy(s_frag_buf + fragIdx * 492, data + 20, payloadLen);
             s_frag_received++;
+            s_frag_orig_len += payloadLen;
         }
         if (s_frag_received >= s_frag_total && s_frag_total > 0) {
             uint32_t assembledLen = s_frag_orig_len;
             s_frag_total = 0;
             s_frag_received = 0;
+            s_frag_orig_len = 0;
             return unpack_internal(env, s_frag_buf, assembledLen);
         }
         return NULL;
@@ -489,9 +512,19 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
             break;
         case 139:
             result = create_msg_by_name(env, "com/sonymobile/smartconnect/hostapp/protocol/RequestWatchFace", msgId);
-            if (result && len >= 18) {
+            if (result && len >= 30) {
                 set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
-                set_int_field(env, result, "mTimestamp", (jint)read_u32_le(data + 14));
+                jintArray arr = (*env)->NewIntArray(env, 3);
+                if (arr) {
+                    jint vals[3];
+                    vals[0] = (jint)read_u32_le(data + 14);
+                    vals[1] = (jint)read_u32_le(data + 18);
+                    vals[2] = (jint)read_u32_le(data + 22);
+                    (*env)->SetIntArrayRegion(env, arr, 0, 3, vals);
+                    set_object_field(env, result, "mValues", "[I", arr);
+                    (*env)->DeleteLocalRef(env, arr);
+                }
+                set_int_field(env, result, "mTimestamp", (jint)read_u32_le(data + 26));
             }
             break;
         case 140:
@@ -560,9 +593,14 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
         case 150:
             result = create_msg_by_name(env, "com/sonymobile/smartconnect/hostapp/protocol/RequestWallpaper", msgId);
             if (result && len >= 22) {
-                set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
+                uint16_t action = read_u16_le(data + 12);
+                set_int_field(env, result, "mAction", (jint)action);
                 set_int_field(env, result, "mWallpaperCid", (jint)read_u32_le(data + 14));
-                set_int_field(env, result, "mThumbnailCid", (jint)read_u32_le(data + 18));
+                if (action == 0) {
+                    set_int_field(env, result, "mThumbnailCid", (jint)read_u32_le(data + 18));
+                } else {
+                    set_int_field(env, result, "mTimestamp", (jint)read_u32_le(data + 18));
+                }
             }
             break;
         case 151:
@@ -867,7 +905,19 @@ JNIEXPORT jobjectArray JNICALL Java_com_sonymobile_smartconnect_hostapp_protocol
         case 139: {
             packetLen = 30;
             write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
-            write_u32_le(buffer + 14, (uint32_t)get_int_field_safe(env, msg, "mTimestamp", 0));
+            jintArray arr = (jintArray)get_object_field_safe(env, msg, "mValues", "[I");
+            if (arr) {
+                jsize arrLen = (*env)->GetArrayLength(env, arr);
+                jint *elems = (*env)->GetIntArrayElements(env, arr, NULL);
+                if (elems) {
+                    for (jsize i = 0; i < 3 && i < arrLen; i++) {
+                        write_u32_le(buffer + 14 + i * 4, (uint32_t)elems[i]);
+                    }
+                    (*env)->ReleaseIntArrayElements(env, arr, elems, JNI_ABORT);
+                }
+                (*env)->DeleteLocalRef(env, arr);
+            }
+            write_u32_le(buffer + 26, (uint32_t)get_int_field_safe(env, msg, "mTimestamp", 0));
             break;
         }
         case 140: {
@@ -927,9 +977,14 @@ JNIEXPORT jobjectArray JNICALL Java_com_sonymobile_smartconnect_hostapp_protocol
         }
         case 150: {
             packetLen = 22;
-            write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
+            int action = get_int_field_safe(env, msg, "mAction", 0);
+            write_u16_le(buffer + 12, (uint16_t)action);
             write_u32_le(buffer + 14, (uint32_t)get_int_field_safe(env, msg, "mWallpaperCid", 0));
-            write_u32_le(buffer + 18, (uint32_t)get_int_field_safe(env, msg, "mThumbnailCid", 0));
+            if (action == 0) {
+                write_u32_le(buffer + 18, (uint32_t)get_int_field_safe(env, msg, "mThumbnailCid", 0));
+            } else {
+                write_u32_le(buffer + 18, (uint32_t)get_int_field_safe(env, msg, "mTimestamp", 0));
+            }
             break;
         }
         case 151: {

@@ -2418,6 +2418,8 @@
 
     invoke-virtual {p0, v1}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->sendFotaMessages([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
 
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->performHandshake()V
+
     .line 635
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mConnectionManager:Lcom/sonymobile/smartconnect/hostapp/connection/ConnectionManager;
 
