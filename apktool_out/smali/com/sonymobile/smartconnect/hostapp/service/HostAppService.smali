@@ -277,6 +277,10 @@
 
     move-result-object v0
 
+    invoke-static {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->resolveWatchAddress(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
     .line 232
     .local v0, "btAddress":Ljava/lang/String;
     if-eqz v0, :cond_4

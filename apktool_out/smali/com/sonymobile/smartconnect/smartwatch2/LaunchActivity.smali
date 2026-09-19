@@ -55,6 +55,10 @@
 
     move-result-object v0
 
+    invoke-static {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->resolveWatchAddress(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d()Z
 
     move-result v4
@@ -87,28 +91,8 @@
     invoke-static {v4}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d(Ljava/lang/String;)Z
 
     :cond_1
-    new-instance v2, Landroid/content/Intent;
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->startCostanzaService(Landroid/content/Context;)V
 
-    const-class v4, Lcom/sonymobile/smartconnect/hostapp/costanza/service/CostanzaService;
-
-    invoke-direct {v2, p0, v4}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
-
-    const-string v4, "Address"
-
-    invoke-virtual {v2, v4, v0}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-
-    const-string v4, "SERVICE_COMMAND"
-
-    const-string v5, "REGISTER"
-
-    invoke-virtual {v2, v4, v5}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-
-    :try_start_ls
-    invoke-virtual {p0, v2}, Lcom/sonymobile/smartconnect/smartwatch2/LaunchActivity;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
-    :try_end_ls
-    .catch Ljava/lang/Throwable; {:try_start_ls .. :try_end_ls} :catch_ls
-
-    :catch_ls
     invoke-virtual {p0}, Lcom/sonymobile/smartconnect/smartwatch2/LaunchActivity;->finish()V
 
     goto :goto_0

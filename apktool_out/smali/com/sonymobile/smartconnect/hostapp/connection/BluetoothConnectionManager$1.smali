@@ -141,7 +141,7 @@
 
     invoke-virtual {v4, v7}, Landroid/bluetooth/BluetoothDevice;->createInsecureRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
     :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
     move-result-object v6
 
@@ -153,7 +153,7 @@
     :try_start_2
     invoke-virtual {v6}, Landroid/bluetooth/BluetoothSocket;->connect()V
     :try_end_2
-    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
 
     .line 505
     const/4 v3, 0x1
@@ -208,7 +208,7 @@
     move-exception v5
 
     .line 498
-    .local v5, "e":Ljava/io/IOException;
+    .local v5, "e":Ljava/lang/Exception;
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance()Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
 
     move-result-object v7
@@ -233,12 +233,12 @@
     goto :goto_1
 
     .line 506
-    .end local v5    # "e":Ljava/io/IOException;
+    .end local v5
     :catch_2
     move-exception v5
 
     .line 507
-    .restart local v5    # "e":Ljava/io/IOException;
+    .restart local v5
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance()Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
 
     move-result-object v7
@@ -262,7 +262,7 @@
     .line 524
     .end local v2    # "btAddress":Ljava/lang/String;
     .end local v4    # "device":Landroid/bluetooth/BluetoothDevice;
-    .end local v5    # "e":Ljava/io/IOException;
+    .end local v5
     :cond_3
     if-eqz v3, :cond_4
 

@@ -2,6 +2,8 @@
 .super Landroid/preference/PreferenceActivity;
 .source "AboutPreferences.java"
 
+.implements Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$CommunicationListener;
+
 
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
@@ -410,36 +412,8 @@
     .end local v5    # "packageInfo":Landroid/content/pm/PackageInfo;
     .end local v6    # "packageName":Ljava/lang/String;
     :goto_0
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getCommunicationManager()Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
+    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->updateAccessoryVersionSummary()V
 
-    move-result-object v8
-
-    invoke-virtual {v8}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->getAccessoryFirmwareVersion()Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 60
-    .local v0, "accessoryVersion":Ljava/lang/CharSequence;
-    if-nez v0, :cond_0
-
-    .line 61
-    const v8, 0x7f070055
-
-    invoke-virtual {p0, v8}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getText(I)Ljava/lang/CharSequence;
-
-    move-result-object v0
-
-    .line 63
-    :cond_0
-    const-string v8, "firmwareVersionAccessoryPref"
-
-    invoke-virtual {p0, v8}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v0}, Landroid/preference/Preference;->setSummary(Ljava/lang/CharSequence;)V
-
-    .line 64
     const-string v8, "firmwareVersionHostappPref"
 
     invoke-virtual {p0, v8}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
@@ -674,4 +648,164 @@
     .packed-switch 0x102002c
         :pswitch_0
     .end packed-switch
+.end method
+
+.method public updateAccessoryVersionSummary()V
+    .locals 3
+
+    .prologue
+    :try_start_av
+    const-string v0, "firmwareVersionAccessoryPref"
+
+    invoke-virtual {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
+
+    move-result-object v0
+
+    if-nez v0, :cond_av_0
+
+    return-void
+
+    :cond_av_0
+    const/4 v1, 0x0
+
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getCommunicationManager()Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
+
+    move-result-object v2
+
+    if-eqz v2, :cond_av_1
+
+    invoke-virtual {v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->getAccessoryFirmwareVersion()Ljava/lang/String;
+
+    move-result-object v1
+
+    :cond_av_1
+    if-nez v1, :cond_av_2
+
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->getWatchFirmwareVersion(Landroid/content/Context;)Ljava/lang/String;
+
+    move-result-object v1
+
+    :cond_av_2
+    if-nez v1, :cond_av_3
+
+    const v1, 0x7f070055
+
+    invoke-virtual {p0, v1}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getText(I)Ljava/lang/CharSequence;
+
+    move-result-object v1
+
+    :cond_av_3
+    invoke-virtual {v0, v1}, Landroid/preference/Preference;->setSummary(Ljava/lang/CharSequence;)V
+    :try_end_av
+    .catch Ljava/lang/Throwable; {:try_start_av .. :try_end_av} :catch_av
+
+    :catch_av
+    return-void
+.end method
+
+.method protected onResume()V
+    .locals 1
+
+    .prologue
+    invoke-super {p0}, Landroid/preference/PreferenceActivity;->onResume()V
+
+    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->updateAccessoryVersionSummary()V
+
+    :try_start_or
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getCommunicationManager()Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_or_0
+
+    invoke-virtual {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->addCommunicationListener(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$CommunicationListener;)V
+    :try_end_or
+    .catch Ljava/lang/Throwable; {:try_start_or .. :try_end_or} :catch_or
+
+    :catch_or
+    :cond_or_0
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->startCostanzaService(Landroid/content/Context;)V
+
+    return-void
+.end method
+
+.method protected onPause()V
+    .locals 1
+
+    .prologue
+    invoke-super {p0}, Landroid/preference/PreferenceActivity;->onPause()V
+
+    :try_start_op
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->getCommunicationManager()Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_op_0
+
+    invoke-virtual {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->removeCommunicationListener(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$CommunicationListener;)V
+    :try_end_op
+    .catch Ljava/lang/Throwable; {:try_start_op .. :try_end_op} :catch_op
+
+    :catch_op
+    :cond_op_0
+    return-void
+.end method
+
+.method public onConnect()V
+    .locals 1
+
+    .prologue
+    new-instance v0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;
+
+    invoke-direct {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)V
+
+    invoke-virtual {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method public onDisconnect()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method public onNewFirmwareAccessoryConnected()V
+    .locals 1
+
+    .prologue
+    new-instance v0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;
+
+    invoke-direct {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)V
+
+    invoke-virtual {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method public onOldFirmwareAccessoryConnected()V
+    .locals 1
+
+    .prologue
+    new-instance v0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;
+
+    invoke-direct {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)V
+
+    invoke-virtual {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method public onReady()V
+    .locals 1
+
+    .prologue
+    new-instance v0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;
+
+    invoke-direct {v0, p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$RefreshRunnable;-><init>(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)V
+
+    invoke-virtual {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->runOnUiThread(Ljava/lang/Runnable;)V
+
+    return-void
 .end method

@@ -85,6 +85,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
-        <service android:exported="false" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaService"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaService"/>
     </application>
 </manifest>

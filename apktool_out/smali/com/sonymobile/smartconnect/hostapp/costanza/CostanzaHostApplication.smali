@@ -394,6 +394,10 @@
 
     .prologue
     .line 774
+    invoke-static {p0, p1}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->resolveWatchAddress(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->mExtensionAndEventHandler:Landroid/os/Handler;
 
     new-instance v1, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication$2;

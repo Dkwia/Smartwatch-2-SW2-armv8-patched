@@ -395,7 +395,7 @@
 .end method
 
 .method static synthetic access$1002(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;Ljava/lang/String;)Ljava/lang/String;
-    .locals 0
+    .locals 1
     .param p0, "x0"    # Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
     .param p1, "x1"    # Ljava/lang/String;
 
@@ -403,6 +403,13 @@
     .line 82
     iput-object p1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mTheirFirmwareVersion:Ljava/lang/String;
 
+    if-eqz p1, :cond_0
+
+    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->ctxt:Landroid/content/Context;
+
+    invoke-static {v0, p1}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->saveWatchFirmwareVersion(Landroid/content/Context;Ljava/lang/String;)V
+
+    :cond_0
     return-object p1
 .end method
 
@@ -2175,14 +2182,26 @@
     monitor-enter p0
 
     :try_start_0
-    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->isConnected()Z
-
-    move-result v0
+    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mTheirFirmwareVersion:Ljava/lang/String;
 
     if-eqz v0, :cond_0
 
-    .line 279
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-lez v0, :cond_0
+
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mTheirFirmwareVersion:Ljava/lang/String;
+
+    goto :goto_0
+
+    :cond_0
+    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->ctxt:Landroid/content/Context;
+
+    invoke-static {v0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->getWatchFirmwareVersion(Landroid/content/Context;)Ljava/lang/String;
+
+    move-result-object v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -2191,11 +2210,6 @@
     monitor-exit p0
 
     return-object v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
 
     .line 278
     :catchall_0

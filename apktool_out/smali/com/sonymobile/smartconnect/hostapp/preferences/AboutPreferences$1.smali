@@ -37,69 +37,33 @@
 
 # virtual methods
 .method public onPreferenceClick(Landroid/preference/Preference;)Z
-    .locals 3
+    .locals 4
     .param p1, "preference"    # Landroid/preference/Preference;
 
     .prologue
-    .line 70
+    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
+
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
 
     invoke-static {v1}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->access$000(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
 
-    move-result-object v0
+    move-result-object v1
 
-    .line 72
-    .local v0, "comMgr":Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
-    sget-object v1, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$5;->$SwitchMap$com$sonymobile$smartconnect$hostapp$connection$CommunicationManager$ConnectionState:[I
+    iget-object v2, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
 
-    invoke-virtual {v0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->getConnectionState()Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;
+    invoke-static {v2}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->access$200(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)Lcom/sonymobile/smartconnect/hostapp/fota/FotaController;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;->ordinal()I
+    iget-object v3, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
 
-    move-result v2
+    invoke-static {v3}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->access$100(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)Landroid/app/AlertDialog;
 
-    aget v1, v1, v2
+    move-result-object v3
 
-    packed-switch v1, :pswitch_data_0
+    invoke-static {v0, v1, v2, v3}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->handleUpdateAccessory(Landroid/app/Activity;Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;Lcom/sonymobile/smartconnect/hostapp/fota/FotaController;Landroid/app/AlertDialog;)V
 
-    .line 84
-    :goto_0
-    const/4 v1, 0x1
+    const/4 v0, 0x1
 
-    return v1
-
-    .line 74
-    :pswitch_0
-    iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
-
-    invoke-static {v1}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->access$100(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)Landroid/app/AlertDialog;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/app/AlertDialog;->show()V
-
-    goto :goto_0
-
-    .line 78
-    :pswitch_1
-    iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;
-
-    invoke-static {v1}, Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;->access$200(Lcom/sonymobile/smartconnect/hostapp/preferences/AboutPreferences;)Lcom/sonymobile/smartconnect/hostapp/fota/FotaController;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Lcom/sonymobile/smartconnect/hostapp/fota/FotaController;->performFota()V
-
-    goto :goto_0
-
-    .line 72
-    nop
-
-    :pswitch_data_0
-    .packed-switch 0x1
-        :pswitch_0
-        :pswitch_1
-    .end packed-switch
+    return v0
 .end method

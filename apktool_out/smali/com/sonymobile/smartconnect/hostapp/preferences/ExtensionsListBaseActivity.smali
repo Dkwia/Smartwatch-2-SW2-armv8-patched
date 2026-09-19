@@ -1085,6 +1085,8 @@
     .line 106
     invoke-super {p0, p1}, Landroid/preference/PreferenceActivity;->onCreate(Landroid/os/Bundle;)V
 
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->checkPermissions(Landroid/app/Activity;)V
+
     invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/CrashHandler;->init(Landroid/content/Context;)V
 
     .line 107
@@ -1653,6 +1655,8 @@
     .line 281
     :try_start_0
     invoke-super {p0}, Landroid/preference/PreferenceActivity;->onResume()V
+
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->startCostanzaService(Landroid/content/Context;)V
 
     .line 282
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mDialogManager:Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;
