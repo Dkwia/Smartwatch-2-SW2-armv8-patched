@@ -256,7 +256,7 @@
 
     invoke-static {v7, v8, v9}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->listenRfcommServerSocket(Landroid/bluetooth/BluetoothAdapter;Ljava/lang/String;Ljava/util/UUID;)Landroid/bluetooth/BluetoothServerSocket;
     :try_end_5
-    .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_2
+    .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_5} :catch_2
 
     move-result-object v4
 
@@ -383,7 +383,7 @@
 
     invoke-static {v7, v8}, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->access$402(Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;Landroid/bluetooth/BluetoothServerSocket;)Landroid/bluetooth/BluetoothServerSocket;
     :try_end_7
-    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_1
+    .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_7} :catch_1
 
     goto/16 :goto_0
 
@@ -393,48 +393,34 @@
     move-exception v2
 
     .line 434
-    .local v2, "e":Ljava/io/IOException;
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance()Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
-
-    move-result-object v7
-
-    invoke-virtual {v7, v2}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->sendCaughtException(Ljava/lang/Exception;)V
-
-    .line 435
+    .local v2, "e":Ljava/lang/Throwable;
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e()Z
 
     move-result v7
 
     if-eqz v7, :cond_1
 
-    const-string v7, "BTCM server socket connection IOException."
+    const-string v7, "BTCM server socket connection exception."
 
     invoke-static {v7, v2}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e(Ljava/lang/String;Ljava/lang/Throwable;)Z
 
     goto/16 :goto_0
 
     .line 379
-    .end local v2    # "e":Ljava/io/IOException;
+    .end local v2    # "e":Ljava/lang/Throwable;
     .restart local v4    # "localServerSocket":Landroid/bluetooth/BluetoothServerSocket;
     :catch_2
     move-exception v2
 
     .line 380
-    .restart local v2    # "e":Ljava/io/IOException;
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance()Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
-
-    move-result-object v7
-
-    invoke-virtual {v7, v2}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->sendCaughtException(Ljava/lang/Exception;)V
-
-    .line 381
+    .restart local v2    # "e":Ljava/lang/Throwable;
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e()Z
 
     move-result v7
 
     if-eqz v7, :cond_a
 
-    const-string v7, "BTCM adapter listening IOException."
+    const-string v7, "BTCM adapter listening exception."
 
     invoke-static {v7, v2}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e(Ljava/lang/String;Ljava/lang/Throwable;)Z
 

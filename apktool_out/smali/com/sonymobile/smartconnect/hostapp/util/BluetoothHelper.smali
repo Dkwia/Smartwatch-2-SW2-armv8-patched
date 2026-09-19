@@ -253,12 +253,14 @@
 
     move-result-object v2
 
+    const/4 v6, 0x0
+
     :cond_1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_fallback_first
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -268,6 +270,15 @@
 
     if-eqz v3, :cond_1
 
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v7
+
+    if-nez v6, :cond_has_first
+
+    move-object v6, v7
+
+    :cond_has_first
     invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getName()Ljava/lang/String;
 
     move-result-object v4
@@ -286,31 +297,77 @@
 
     move-result v5
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_found
+
+    const-string v5, "smart watch"
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_found
 
     const-string v5, "sw2"
 
     invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
-    move-result v4
+    move-result v5
 
-    if-eqz v4, :cond_1
+    if-nez v5, :cond_found
 
-    :cond_2
-    invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+    const-string v5, "sw 2"
 
-    move-result-object v0
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
-    if-eqz v0, :cond_1
+    move-result v5
 
-    if-eqz p0, :cond_3
+    if-nez v5, :cond_found
 
-    invoke-static {p0, v0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->saveWatchAddress(Landroid/content/Context;Ljava/lang/String;)V
+    const-string v5, "costanza"
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_found
+
+    const-string v5, "watch"
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-nez v5, :cond_found
+
+    const-string v5, "sony"
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_1
+
+    :cond_found
+    if-eqz v7, :cond_1
+
+    if-eqz p0, :cond_ret_7
+
+    invoke-static {p0, v7}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->saveWatchAddress(Landroid/content/Context;Ljava/lang/String;)V
+
+    :cond_ret_7
+    return-object v7
+
+    :cond_fallback_first
+    if-eqz v6, :cond_4
+
+    if-eqz p0, :cond_ret_6
+
+    invoke-static {p0, v6}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->saveWatchAddress(Landroid/content/Context;Ljava/lang/String;)V
+
+    :cond_ret_6
+    return-object v6
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
-
-    :cond_3
-    return-object v0
 
     :catch_0
     move-exception v1
@@ -640,26 +697,28 @@
 .end method
 
 .method public static connectRfcommSocket(Landroid/bluetooth/BluetoothDevice;Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
-    .locals 7
+    .locals 8
     .param p0, "device"    # Landroid/bluetooth/BluetoothDevice;
     .param p1, "uuid"    # Ljava/util/UUID;
 
     .prologue
-    const/4 v6, 0x0
+    const/4 v7, 0x0
 
     if-nez p0, :cond_0
 
-    return-object v6
+    return-object v7
 
     :cond_0
     const/4 v0, 0x0
+
+    if-eqz p1, :cond_try2
 
     :try_start_0
     invoke-virtual {p0, p1}, Landroid/bluetooth/BluetoothDevice;->createInsecureRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_try2
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
     :try_end_0
@@ -670,23 +729,58 @@
     :catch_0
     move-exception v1
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_try2
 
-    :try_start_1
+    :try_start_c0
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
-    :try_end_1
-    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_c0
+    .catch Ljava/lang/Throwable; {:try_start_c0 .. :try_end_c0} :catch_c0
 
-    :catch_1
+    :catch_c0
     const/4 v0, 0x0
 
-    :cond_1
-    :try_start_2
+    :cond_try2
+    if-eqz p1, :cond_try3
+
+    :try_start_1
     invoke-virtual {p0, p1}, Landroid/bluetooth/BluetoothDevice;->createRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
 
     move-result-object v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_try3
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    :try_end_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
+
+    return-object v0
+
+    :catch_1
+    move-exception v1
+
+    if-eqz v0, :cond_try3
+
+    :try_start_c1
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c1
+    .catch Ljava/lang/Throwable; {:try_start_c1 .. :try_end_c1} :catch_c1
+
+    :catch_c1
+    const/4 v0, 0x0
+
+    :cond_try3
+    :try_start_2
+    const-string v1, "8E780522-3C51-11E1-8D8D-001CC4D601D8"
+
+    invoke-static {v1}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
+
+    move-result-object v6
+
+    invoke-virtual {p0, v6}, Landroid/bluetooth/BluetoothDevice;->createInsecureRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_try4
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
     :try_end_2
@@ -697,18 +791,117 @@
     :catch_2
     move-exception v1
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_try4
 
-    :try_start_3
+    :try_start_c2
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c2
+    .catch Ljava/lang/Throwable; {:try_start_c2 .. :try_end_c2} :catch_c2
+
+    :catch_c2
+    const/4 v0, 0x0
+
+    :cond_try4
+    :try_start_3
+    const-string v1, "8E780522-3C51-11E1-8D8D-001CC4D601D8"
+
+    invoke-static {v1}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
+
+    move-result-object v6
+
+    invoke-virtual {p0, v6}, Landroid/bluetooth/BluetoothDevice;->createRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_try5
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
     :try_end_3
     .catch Ljava/lang/Throwable; {:try_start_3 .. :try_end_3} :catch_3
 
+    return-object v0
+
     :catch_3
+    move-exception v1
+
+    if-eqz v0, :cond_try5
+
+    :try_start_c3
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c3
+    .catch Ljava/lang/Throwable; {:try_start_c3 .. :try_end_c3} :catch_c3
+
+    :catch_c3
     const/4 v0, 0x0
 
-    :cond_2
+    :cond_try5
     :try_start_4
+    const-string v1, "00001101-0000-1000-8000-00805F9B34FB"
+
+    invoke-static {v1}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
+
+    move-result-object v6
+
+    invoke-virtual {p0, v6}, Landroid/bluetooth/BluetoothDevice;->createInsecureRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_try6
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    :try_end_4
+    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_4
+
+    return-object v0
+
+    :catch_4
+    move-exception v1
+
+    if-eqz v0, :cond_try6
+
+    :try_start_c4
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c4
+    .catch Ljava/lang/Throwable; {:try_start_c4 .. :try_end_c4} :catch_c4
+
+    :catch_c4
+    const/4 v0, 0x0
+
+    :cond_try6
+    :try_start_5
+    const-string v1, "00001101-0000-1000-8000-00805F9B34FB"
+
+    invoke-static {v1}, Ljava/util/UUID;->fromString(Ljava/lang/String;)Ljava/util/UUID;
+
+    move-result-object v6
+
+    invoke-virtual {p0, v6}, Landroid/bluetooth/BluetoothDevice;->createRfcommSocketToServiceRecord(Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_try7
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    :try_end_5
+    .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_5} :catch_5
+
+    return-object v0
+
+    :catch_5
+    move-exception v1
+
+    if-eqz v0, :cond_try7
+
+    :try_start_c5
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c5
+    .catch Ljava/lang/Throwable; {:try_start_c5 .. :try_end_c5} :catch_c5
+
+    :catch_c5
+    const/4 v0, 0x0
+
+    :cond_try7
+    :try_start_6
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -745,29 +938,29 @@
 
     check-cast v0, Landroid/bluetooth/BluetoothSocket;
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_try8
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
-    :try_end_4
-    .catch Ljava/lang/Throwable; {:try_start_4 .. :try_end_4} :catch_4
+    :try_end_6
+    .catch Ljava/lang/Throwable; {:try_start_6 .. :try_end_6} :catch_6
 
     return-object v0
 
-    :catch_4
+    :catch_6
     move-exception v1
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_try8
 
-    :try_start_5
+    :try_start_c6
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
-    :try_end_5
-    .catch Ljava/lang/Throwable; {:try_start_5 .. :try_end_5} :catch_5
+    :try_end_c6
+    .catch Ljava/lang/Throwable; {:try_start_c6 .. :try_end_c6} :catch_c6
 
-    :catch_5
+    :catch_c6
     const/4 v0, 0x0
 
-    :cond_3
-    :try_start_6
+    :cond_try8
+    :try_start_7
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -804,31 +997,151 @@
 
     check-cast v0, Landroid/bluetooth/BluetoothSocket;
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_try9
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
-    :try_end_6
-    .catch Ljava/lang/Throwable; {:try_start_6 .. :try_end_6} :catch_6
-
-    return-object v0
-
-    :catch_6
-    move-exception v1
-
-    if-eqz v0, :cond_4
-
-    :try_start_7
-    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
     :try_end_7
     .catch Ljava/lang/Throwable; {:try_start_7 .. :try_end_7} :catch_7
 
+    return-object v0
+
     :catch_7
+    move-exception v1
+
+    if-eqz v0, :cond_try9
+
+    :try_start_c7
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c7
+    .catch Ljava/lang/Throwable; {:try_start_c7 .. :try_end_c7} :catch_c7
+
+    :catch_c7
     const/4 v0, 0x0
 
-    :cond_4
-    const/4 v1, 0x0
+    :cond_try9
+    :try_start_8
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
-    return-object v1
+    move-result-object v1
+
+    const-string v2, "createInsecureRfcommSocket"
+
+    const/4 v3, 0x1
+
+    new-array v4, v3, [Ljava/lang/Class;
+
+    sget-object v5, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
+
+    const/4 v6, 0x0
+
+    aput-object v5, v4, v6
+
+    invoke-virtual {v1, v2, v4}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v1
+
+    new-array v2, v3, [Ljava/lang/Object;
+
+    const/4 v3, 0x2
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v3
+
+    aput-object v3, v2, v6
+
+    invoke-virtual {v1, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    move-object v0, v1
+
+    check-cast v0, Landroid/bluetooth/BluetoothSocket;
+
+    if-eqz v0, :cond_try10
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    :try_end_8
+    .catch Ljava/lang/Throwable; {:try_start_8 .. :try_end_8} :catch_8
+
+    return-object v0
+
+    :catch_8
+    move-exception v1
+
+    if-eqz v0, :cond_try10
+
+    :try_start_c8
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c8
+    .catch Ljava/lang/Throwable; {:try_start_c8 .. :try_end_c8} :catch_c8
+
+    :catch_c8
+    const/4 v0, 0x0
+
+    :cond_try10
+    :try_start_9
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v1
+
+    const-string v2, "createRfcommSocket"
+
+    const/4 v3, 0x1
+
+    new-array v4, v3, [Ljava/lang/Class;
+
+    sget-object v5, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
+
+    const/4 v6, 0x0
+
+    aput-object v5, v4, v6
+
+    invoke-virtual {v1, v2, v4}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v1
+
+    new-array v2, v3, [Ljava/lang/Object;
+
+    const/4 v3, 0x2
+
+    invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v3
+
+    aput-object v3, v2, v6
+
+    invoke-virtual {v1, p0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    move-object v0, v1
+
+    check-cast v0, Landroid/bluetooth/BluetoothSocket;
+
+    if-eqz v0, :cond_fail
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->connect()V
+    :try_end_9
+    .catch Ljava/lang/Throwable; {:try_start_9 .. :try_end_9} :catch_9
+
+    return-object v0
+
+    :catch_9
+    move-exception v1
+
+    if-eqz v0, :cond_fail
+
+    :try_start_c9
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothSocket;->close()V
+    :try_end_c9
+    .catch Ljava/lang/Throwable; {:try_start_c9 .. :try_end_c9} :catch_c9
+
+    :catch_c9
+    const/4 v0, 0x0
+
+    :cond_fail
+    return-object v7
 .end method
 
 .method public static listenRfcommServerSocket(Landroid/bluetooth/BluetoothAdapter;Ljava/lang/String;Ljava/util/UUID;)Landroid/bluetooth/BluetoothServerSocket;

@@ -352,6 +352,16 @@
     return-object v0
 .end method
 
+.method static synthetic access$900(Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;)Landroid/content/Context;
+    .locals 1
+    .param p0, "x0"    # Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;
+
+    .prologue
+    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->mContext:Landroid/content/Context;
+
+    return-object v0
+.end method
+
 .method private onConnect(Landroid/bluetooth/BluetoothSocket;)V
     .locals 5
     .param p1, "socket"    # Landroid/bluetooth/BluetoothSocket;

@@ -1180,10 +1180,17 @@
 
     .line 130
     :cond_3
+    :try_start_dm
     iget-object v10, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mDialogManager:Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;
 
-    invoke-virtual {v10, p1}, Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;->onCreate(Landroid/os/Bundle;)V
+    if-eqz v10, :cond_dm_done
 
+    invoke-virtual {v10, p1}, Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;->onCreate(Landroid/os/Bundle;)V
+    :try_end_dm
+    .catch Ljava/lang/Throwable; {:try_start_dm .. :try_end_dm} :catch_dm
+
+    :catch_dm
+    :cond_dm_done
     .line 150
     invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/MarketUtils;->isGooglePlayInstalled(Landroid/content/Context;)Z
 

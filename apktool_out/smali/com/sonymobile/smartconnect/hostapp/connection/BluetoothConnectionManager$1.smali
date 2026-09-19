@@ -121,12 +121,37 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
+    if-nez v2, :cond_res_addr
+
+    iget-object v7, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;
+
+    invoke-static {v7}, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->access$900(Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;)Landroid/content/Context;
+
+    move-result-object v7
+
+    const/4 v9, 0x0
+
+    invoke-static {v7, v9}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->resolveWatchAddress(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    :cond_res_addr
+    if-nez v2, :cond_have_addr
+
+    const/4 v6, 0x0
+
+    goto :goto_1
+
     .line 480
+    :cond_have_addr
+    :try_start_1
     iget-object v7, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager$1;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;
 
     invoke-static {v7}, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->access$300(Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;)Landroid/bluetooth/BluetoothAdapter;
 
     move-result-object v7
+
+    if-eqz v7, :cond_no_dev
 
     invoke-virtual {v7, v2}, Landroid/bluetooth/BluetoothAdapter;->getRemoteDevice(Ljava/lang/String;)Landroid/bluetooth/BluetoothDevice;
 
@@ -134,16 +159,24 @@
 
     .line 483
     .local v4, "device":Landroid/bluetooth/BluetoothDevice;
-    :try_start_1
+    if-eqz v4, :cond_no_dev
+
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->access$800()Ljava/util/UUID;
 
     move-result-object v7
 
     invoke-static {v4, v7}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->connectRfcommSocket(Landroid/bluetooth/BluetoothDevice;Ljava/util/UUID;)Landroid/bluetooth/BluetoothSocket;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
     move-result-object v6
+
+    goto :goto_1
+
+    :cond_no_dev
+    const/4 v6, 0x0
+    :try_end_1
+    .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
+
+    goto :goto_1
 
     .line 502
     :goto_1
@@ -168,7 +201,7 @@
     :try_end_3
     .catch Ljava/lang/InterruptedException; {:try_start_3 .. :try_end_3} :catch_0
 
-    goto :goto_0
+    goto/16 :goto_0
 
     .line 517
     :catch_0
@@ -182,11 +215,10 @@
 
     invoke-virtual {v7, v5}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->sendCaughtException(Ljava/lang/Exception;)V
 
-    goto :goto_0
+    goto/16 :goto_0
 
     .line 478
     .end local v2    # "btAddress":Ljava/lang/String;
-    .end local v4    # "device":Landroid/bluetooth/BluetoothDevice;
     .end local v5    # "e":Ljava/lang/InterruptedException;
     :catchall_0
     move-exception v7
@@ -200,19 +232,11 @@
 
     .line 497
     .restart local v2    # "btAddress":Ljava/lang/String;
-    .restart local v4    # "device":Landroid/bluetooth/BluetoothDevice;
     :catch_1
     move-exception v5
 
     .line 498
-    .local v5, "e":Ljava/lang/Exception;
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->getInstance()Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;
-
-    move-result-object v7
-
-    invoke-virtual {v7, v5}, Lcom/sonymobile/smartconnect/hostapp/analytics/Analytics;->sendCaughtException(Ljava/lang/Exception;)V
-
-    .line 499
+    .local v5, "e":Ljava/lang/Throwable;
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e()Z
 
     move-result v7
@@ -230,7 +254,7 @@
     goto :goto_1
 
     .line 506
-    .end local v5
+    .end local v5    # "e":Ljava/lang/Throwable;
     :catch_2
     move-exception v5
 
