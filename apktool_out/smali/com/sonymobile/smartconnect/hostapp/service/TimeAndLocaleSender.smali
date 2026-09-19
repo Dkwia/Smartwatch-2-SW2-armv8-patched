@@ -106,7 +106,7 @@
 
     aput-object v1, v3, v4
 
-    invoke-interface {v2, v3}, Lcom/sonymobile/smartconnect/hostapp/connection/CostanzaMessageSender;->sendPrioritized([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
+    invoke-interface {v2, v3}, Lcom/sonymobile/smartconnect/hostapp/connection/CostanzaMessageSender;->sendFotaMessages([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
 
     .line 67
     return-void
@@ -193,7 +193,7 @@
 
     aput-object v5, v7, v8
 
-    invoke-interface {v6, v7}, Lcom/sonymobile/smartconnect/hostapp/connection/CostanzaMessageSender;->sendPrioritized([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
+    invoke-interface {v6, v7}, Lcom/sonymobile/smartconnect/hostapp/connection/CostanzaMessageSender;->sendFotaMessages([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
 
     .line 50
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->v()Z

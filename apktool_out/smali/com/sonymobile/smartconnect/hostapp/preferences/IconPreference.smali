@@ -74,8 +74,34 @@
 
     move-result v0
 
-    .line 55
-    .local v0, "iconResId":I
+    if-nez v0, :cond_get_icon
+
+    const-string v1, "http://schemas.android.com/apk/res-auto"
+
+    const-string v2, "icon"
+
+    const/4 v3, 0x0
+
+    invoke-interface {p2, v1, v2, v3}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
+
+    move-result v0
+
+    if-nez v0, :cond_get_icon
+
+    const/4 v1, 0x0
+
+    const-string v2, "icon"
+
+    const/4 v3, 0x0
+
+    invoke-interface {p2, v1, v2, v3}, Landroid/util/AttributeSet;->getAttributeResourceValue(Ljava/lang/String;Ljava/lang/String;I)I
+
+    move-result v0
+
+    :cond_get_icon
+    if-eqz v0, :cond_filter
+
+    :try_start_icon
     invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -85,8 +111,11 @@
     move-result-object v1
 
     iput-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->mIcon:Landroid/graphics/drawable/Drawable;
+    :try_end_icon
+    .catch Ljava/lang/Throwable; {:try_start_icon .. :try_end_icon} :catch_icon
 
-    .line 56
+    :catch_icon
+    :cond_filter
     const-string v1, "http://schemas.android.com/apk/res/com.sonymobile.smartconnect.smartwatch2"
 
     const-string v2, "filter"
@@ -95,9 +124,19 @@
 
     move-result-object v1
 
+    if-nez v1, :cond_set_filter
+
+    const-string v1, "http://schemas.android.com/apk/res-auto"
+
+    const-string v2, "filter"
+
+    invoke-interface {p2, v1, v2}, Landroid/util/AttributeSet;->getAttributeValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    :cond_set_filter
     iput-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->mFilter:Ljava/lang/String;
 
-    .line 57
     const-string v1, "http://schemas.android.com/apk/res/com.sonymobile.smartconnect.smartwatch2"
 
     const-string v2, "altLink"
@@ -106,10 +145,20 @@
 
     move-result-object v1
 
+    if-nez v1, :cond_set_alt
+
+    const-string v1, "http://schemas.android.com/apk/res-auto"
+
+    const-string v2, "altLink"
+
+    invoke-interface {p2, v1, v2}, Landroid/util/AttributeSet;->getAttributeValue(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    :cond_set_alt
     iput-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/IconPreference;->mAlternativeLink:Ljava/lang/String;
 
     .line 59
-    .end local v0    # "iconResId":I
     :cond_0
     return-void
 .end method
