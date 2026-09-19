@@ -207,7 +207,9 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
     uint32_t totalLen = read_u32_le(data);
     uint32_t type = read_u32_le(data + 4);
     uint32_t msgId = read_u32_le(data + 8);
-    (void)totalLen;
+    if (totalLen >= 12 && totalLen <= len) {
+        len = totalLen;
+    }
 
     if (type == 11) {
         if (len < 20) return NULL;
@@ -249,7 +251,14 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
                     my_memset(fw, 0, sizeof(fw));
                     uint32_t strLen = len - 16;
                     if (strLen > 31) strLen = 31;
-                    my_memcpy(fw, data + 16, strLen);
+                    for (uint32_t i = 0; i < strLen; i++) {
+                        if (data[16 + i] == 0) {
+                            strLen = i;
+                            break;
+                        }
+                        fw[i] = (char)data[16 + i];
+                    }
+                    fw[strLen] = '\0';
                     set_string_field(env, result, "mFirmwareVersion", fw);
                 }
             }

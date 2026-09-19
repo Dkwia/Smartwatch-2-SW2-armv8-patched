@@ -277,36 +277,5 @@
 
     .line 1171
     :cond_4
-    if-eqz v1, :cond_3
-
-    invoke-static {v1, v2}, Landroid/text/TextUtils;->equals(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_3
-
-    .line 1172
-    invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d()Z
-
-    move-result v5
-
-    if-eqz v5, :cond_5
-
-    .line 1173
-    const-string v5, "This is a new device, will ask it to factory reset before continuing"
-
-    invoke-static {v5}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->d(Ljava/lang/String;)Z
-
-    .line 1175
-    :cond_5
-    iget-object v5, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$1FactoryResetListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
-
-    invoke-virtual {v5}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->sendFactoryResetMessage()V
-
-    .line 1178
-    iget-object v5, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$1FactoryResetListener;->this$0:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;
-
-    invoke-static {v5}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->access$1300(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;)V
-
-    goto :goto_0
+    goto :cond_3
 .end method

@@ -631,23 +631,25 @@
 
     if-eqz v0, :cond_1
 
-    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->isConnected()Z
+    if-nez p1, :cond_not_null
 
-    move-result v0
+    goto :cond_3
 
-    if-eqz v0, :cond_3
-
+    :cond_not_null
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->mBtAddress:Ljava/lang/String;
 
-    if-eqz v0, :cond_3
+    if-nez v0, :cond_has_addr
 
-    iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->mBtAddress:Ljava/lang/String;
+    goto :cond_3
 
+    :cond_has_addr
     invoke-virtual {v0, p1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_1
+
+    goto :cond_3
 
     .line 175
     :cond_1

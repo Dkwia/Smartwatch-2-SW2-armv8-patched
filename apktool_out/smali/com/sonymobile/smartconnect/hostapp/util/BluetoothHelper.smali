@@ -189,15 +189,37 @@
     invoke-interface {v1, v2, v3}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+
+    :cond_1
+    if-eqz v0, :cond_fallback
+
+    invoke-virtual {v0}, Ljava/lang/String;->length()I
+
+    move-result v1
+
+    if-lez v1, :cond_fallback
 
     return-object v0
+
+    :cond_fallback
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->findBondedWatchAddress(Landroid/content/Context;)Ljava/lang/String;
+
+    move-result-object v1
+
+    if-eqz v1, :cond_ret_null
+
+    const-string v0, "1.0.B.6.40"
+
+    return-object v0
+
+    :cond_ret_null
+    return-object v0
+    :try_end_0
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
     :catch_0
     move-exception v1
 
-    :cond_1
     return-object v0
 .end method
 
