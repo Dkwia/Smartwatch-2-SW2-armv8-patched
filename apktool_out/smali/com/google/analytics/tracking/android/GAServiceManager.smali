@@ -300,13 +300,16 @@
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 95
+    :try_start_gar
     iget-object v1, p0, Lcom/google/analytics/tracking/android/GAServiceManager;->ctx:Landroid/content/Context;
 
     iget-object v2, p0, Lcom/google/analytics/tracking/android/GAServiceManager;->networkReceiver:Lcom/google/analytics/tracking/android/GANetworkReceiver;
 
     invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    :try_end_gar
+    .catch Ljava/lang/Throwable; {:try_start_gar .. :try_end_gar} :catch_gar
 
+    :catch_gar
     .line 96
     return-void
 .end method

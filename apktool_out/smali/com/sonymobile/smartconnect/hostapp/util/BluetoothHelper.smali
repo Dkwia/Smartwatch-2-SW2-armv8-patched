@@ -400,7 +400,7 @@
     :cond_0
     if-eqz p0, :cond_1
 
-    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->getSavedWatchAddress(Landroid/content/Context;)Ljava/lang/String;
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->findBondedWatchAddress(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -415,7 +415,7 @@
     return-object v0
 
     :cond_3
-    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->findBondedWatchAddress(Landroid/content/Context;)Ljava/lang/String;
+    invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->getSavedWatchAddress(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
 

@@ -2542,6 +2542,7 @@
 
     .line 619
     .local v72, "filter":Landroid/content/IntentFilter;
+    :try_start_lcr
     move-object/from16 v0, p0
 
     move-object/from16 v1, v80
@@ -2549,7 +2550,10 @@
     move-object/from16 v2, v72
 
     invoke-virtual {v0, v1, v2}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    :try_end_lcr
+    .catch Ljava/lang/Throwable; {:try_start_lcr .. :try_end_lcr} :catch_lcr
 
+    :catch_lcr
     .line 621
     if-eqz v76, :cond_5
 
@@ -2588,6 +2592,12 @@
 
     .line 629
     invoke-interface/range {v71 .. v71}, Landroid/content/SharedPreferences$Editor;->apply()V
+
+    const/4 v6, 0x0
+
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v6}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->connect(Ljava/lang/String;)V
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 

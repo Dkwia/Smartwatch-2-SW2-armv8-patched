@@ -1645,6 +1645,19 @@
 
     invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/BluetoothHelper;->startCostanzaService(Landroid/content/Context;)V
 
+    invoke-virtual {p0}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;
+
+    if-eqz v0, :cond_app_conn
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Lcom/sonymobile/smartconnect/hostapp/costanza/CostanzaHostApplication;->connect(Ljava/lang/String;)V
+
+    :cond_app_conn
     .line 282
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->mDialogManager:Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;
 

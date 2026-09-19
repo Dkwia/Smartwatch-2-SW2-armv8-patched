@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView android:layout_gravity="center" android:id="@id/icon_disabled_app" android:layout_width="@dimen/asf_icon_size" android:layout_height="@dimen/asf_icon_size" android:layout_marginLeft="@dimen/asf_list_item_image_padding" android:layout_marginRight="@dimen/asf_list_item_image_padding" />
     <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
-        <TextView android:textAppearance="?android:textAppearanceMedium" android:ellipsize="marquee" android:id="@id/title_disabled_app" android:fadingEdge="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-        <TextView android:textAppearance="?android:textAppearanceSmall" android:id="@id/summary_disabled_app" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/my_apps_item_edit_settings" android:maxLines="2" android:layout_alignLeft="@id/title_disabled_app" />
+        <TextView android:textAppearance="?android:textAppearanceMedium" android:textColor="?android:attr/textColorPrimary" android:ellipsize="marquee" android:id="@id/title_disabled_app" android:fadingEdge="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:textAppearance="?android:textAppearanceSmall" android:textColor="?android:attr/textColorSecondary" android:id="@id/summary_disabled_app" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/my_apps_item_edit_settings" android:maxLines="2" android:layout_alignLeft="@id/title_disabled_app" />
     </LinearLayout>
 </LinearLayout>

@@ -3,6 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView android:layout_gravity="center" android:id="@id/icon" android:layout_width="@dimen/asf_icon_size" android:layout_height="@dimen/asf_icon_size" android:layout_marginLeft="@dimen/asf_list_item_image_padding" android:layout_marginRight="@dimen/asf_list_item_image_padding" android:src="@drawable/add_new_icon" />
     <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6.0dip" android:layout_marginBottom="6.0dip" android:layout_weight="1.0">
-        <TextView android:textAppearance="?android:textAppearanceMedium" android:ellipsize="marquee" android:paddingLeft="8.0dip" android:fadingEdge="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/get_more_apps" android:singleLine="true" />
+        <TextView android:textAppearance="?android:textAppearanceMedium" android:textColor="?android:attr/textColorPrimary" android:ellipsize="marquee" android:paddingLeft="8.0dip" android:fadingEdge="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/get_more_apps" android:singleLine="true" />
     </RelativeLayout>
 </LinearLayout>

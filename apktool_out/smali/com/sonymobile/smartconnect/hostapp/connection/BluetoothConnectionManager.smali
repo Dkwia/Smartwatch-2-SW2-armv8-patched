@@ -231,13 +231,16 @@
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 89
+    :try_start_btr
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->mContext:Landroid/content/Context;
 
     iget-object v2, p0, Lcom/sonymobile/smartconnect/hostapp/connection/BluetoothConnectionManager;->mBtBroadcastReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    :try_end_btr
+    .catch Ljava/lang/Throwable; {:try_start_btr .. :try_end_btr} :catch_btr
 
+    :catch_btr
     .line 90
     return-void
 .end method

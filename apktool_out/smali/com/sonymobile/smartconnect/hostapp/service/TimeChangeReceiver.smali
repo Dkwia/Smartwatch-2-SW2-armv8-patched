@@ -41,9 +41,12 @@
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 27
+    :try_start_tcr
     invoke-virtual {p1, p0, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+    :try_end_tcr
+    .catch Ljava/lang/Throwable; {:try_start_tcr .. :try_end_tcr} :catch_tcr
 
+    :catch_tcr
     .line 28
     return-void
 .end method
@@ -83,10 +86,17 @@
 
     .prologue
     .line 31
+    :try_start_tcu
     iget-object v0, p0, Lcom/sonymobile/smartconnect/hostapp/service/TimeChangeReceiver;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v0, p0}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+    if-eqz v0, :cond_tcu
 
+    invoke-virtual {v0, p0}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+    :try_end_tcu
+    .catch Ljava/lang/Throwable; {:try_start_tcu .. :try_end_tcu} :catch_tcu
+
+    :cond_tcu
+    :catch_tcu
     .line 32
     return-void
 .end method
