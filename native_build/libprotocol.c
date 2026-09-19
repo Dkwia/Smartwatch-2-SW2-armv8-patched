@@ -258,6 +258,9 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
                         }
                         fw[i] = (char)data[16 + i];
                     }
+                    while (strLen > 0 && ((uint8_t)fw[strLen - 1] <= ' ' || (uint8_t)fw[strLen - 1] > 126)) {
+                        strLen--;
+                    }
                     fw[strLen] = '\0';
                     set_string_field(env, result, "mFirmwareVersion", fw);
                 }

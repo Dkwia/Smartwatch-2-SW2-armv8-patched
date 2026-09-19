@@ -1424,14 +1424,13 @@
     iput v5, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mRemainingListMessages:I
 
     .line 606
-    iget v5, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mRemainingListMessages:I
-
-    if-nez v5, :cond_1
-
-    .line 607
     sget-object v5, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;->READY:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;
 
     invoke-direct {p0, v5}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->setConnectionState(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;)V
+
+    iget v5, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mRemainingListMessages:I
+
+    if-nez v5, :cond_1
 
     .line 616
     :cond_0

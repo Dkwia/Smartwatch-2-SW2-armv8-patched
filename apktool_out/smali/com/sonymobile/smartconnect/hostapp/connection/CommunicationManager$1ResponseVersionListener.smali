@@ -185,9 +185,7 @@
 
     invoke-static {v2, v3}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->access$1200(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;)V
 
-    .line 1046
-    :goto_0
-    return-void
+    goto :cond_6
 
     .line 1008
     :cond_2
@@ -298,7 +296,7 @@
 
     invoke-static {v2, v3}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->access$1200(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;)V
 
-    goto :goto_0
+    goto :cond_6
 
     .line 1019
     :cond_5
@@ -408,5 +406,6 @@
 
     invoke-static {v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->access$1400(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;)V
 
-    goto/16 :goto_0
+    :goto_0
+    return-void
 .end method
