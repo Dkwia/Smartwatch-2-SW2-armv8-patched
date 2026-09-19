@@ -87,4 +87,16 @@
         </receiver>
         <service android:exported="false" android:foregroundServiceType="connectedDevice" android:name="com.sonymobile.smartconnect.hostapp.costanza.service.CostanzaService"/>
     </application>
+    <queries>
+        <intent>
+            <action android:name="com.sonyericsson.extras.liveware.aef.registration.ACTIVITY_COMMAND"/>
+        </intent>
+        <intent>
+            <action android:name="com.sonyericsson.extras.liveware.aef.registration.READ_REGISTRATION"/>
+        </intent>
+        <intent>
+            <action android:name="com.sonyericsson.extras.SETTINGS"/>
+        </intent>
+        <package android:name="com.sonyericsson.extras.liveware"/>
+    </queries>
 </manifest>

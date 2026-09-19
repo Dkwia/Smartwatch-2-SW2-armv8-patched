@@ -2020,6 +2020,8 @@
 
     invoke-virtual {v9, v14, v15, v0}, Ljava/io/OutputStream;->write([BII)V
 
+    invoke-virtual {v9}, Ljava/io/OutputStream;->flush()V
+
     .line 833
     invoke-static {}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->v()Z
 
@@ -2584,7 +2586,18 @@
     move-result v3
 
     .line 725
-    if-lez v3, :cond_0
+    if-gez v3, :cond_not_eof_hdr
+
+    new-instance v7, Ljava/io/IOException;
+
+    const-string v8, "EOF"
+
+    invoke-direct {v7, v8}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v7
+
+    :cond_not_eof_hdr
+    if-eqz v3, :cond_0
 
     .line 726
     sub-int/2addr v5, v3
@@ -2668,7 +2681,18 @@
     move-result v3
 
     .line 734
-    if-lez v3, :cond_4
+    if-gez v3, :cond_not_eof_body
+
+    new-instance v7, Ljava/io/IOException;
+
+    const-string v8, "EOF"
+
+    invoke-direct {v7, v8}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+
+    throw v7
+
+    :cond_not_eof_body
+    if-eqz v3, :cond_4
 
     .line 735
     iget v7, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mReadOffset:I
