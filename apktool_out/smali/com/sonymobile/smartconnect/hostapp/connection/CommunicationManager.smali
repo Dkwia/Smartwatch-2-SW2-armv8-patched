@@ -1617,7 +1617,7 @@
 .end method
 
 .method private declared-synchronized setConnectionState(Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;)V
-    .locals 2
+    .locals 3
     .param p1, "state"    # Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;
 
     .prologue
@@ -1625,6 +1625,8 @@
     monitor-enter p0
 
     :try_start_0
+    iput-object p1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mState:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;
+
     sget-object v0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$2;->$SwitchMap$com$sonymobile$smartconnect$hostapp$connection$CommunicationManager$ConnectionState:[I
 
     invoke-virtual {p1}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;->ordinal()I
@@ -1662,11 +1664,11 @@
     move-result-object v0
 
     invoke-static {v0}, Lcom/sonymobile/smartconnect/hostapp/Dbg;->e(Ljava/lang/String;)Z
+
+    :cond_0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 312
-    :cond_0
     :goto_0
     monitor-exit p0
 
@@ -1677,13 +1679,48 @@
     :try_start_1
     invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOnConnect()V
 
-    .line 311
-    :goto_1
-    iput-object p1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mState:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$ConnectionState;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    goto :goto_0
+
+    .line 294
+    :pswitch_1
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyNewFirmwareAccessoryConnected()V
 
     goto :goto_0
+
+    .line 297
+    :pswitch_2
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOldFirmwareAccessoryConnected()V
+
+    goto :goto_0
+
+    .line 300
+    :pswitch_3
+    iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mSendMessageHandler:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$SendMessageHandler;
+
+    if-eqz v1, :cond_kick_ready
+
+    iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mSendMessageHandler:Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$SendMessageHandler;
+
+    const/4 v2, 0x0
+
+    invoke-static {v1, v2}, Landroid/os/Message;->obtain(Landroid/os/Handler;I)Landroid/os/Message;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager$SendMessageHandler;->sendMessage(Landroid/os/Message;)Z
+
+    :cond_kick_ready
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOnReady()V
+
+    goto :goto_0
+
+    .line 303
+    :pswitch_4
+    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOnDisconnect()V
+
+    goto :goto_0
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     .line 289
     :catchall_0
@@ -1692,33 +1729,6 @@
     monitor-exit p0
 
     throw v0
-
-    .line 294
-    :pswitch_1
-    :try_start_2
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyNewFirmwareAccessoryConnected()V
-
-    goto :goto_1
-
-    .line 297
-    :pswitch_2
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOldFirmwareAccessoryConnected()V
-
-    goto :goto_1
-
-    .line 300
-    :pswitch_3
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOnReady()V
-
-    goto :goto_1
-
-    .line 303
-    :pswitch_4
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->notifyOnDisconnect()V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
-
-    goto :goto_1
 
     .line 289
     nop
@@ -2417,8 +2427,6 @@
     aput-object v0, v1, v3
 
     invoke-virtual {p0, v1}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->sendFotaMessages([Lcom/sonymobile/smartconnect/hostapp/protocol/CostanzaMessage;)V
-
-    invoke-direct {p0}, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->performHandshake()V
 
     .line 635
     iget-object v1, p0, Lcom/sonymobile/smartconnect/hostapp/connection/CommunicationManager;->mConnectionManager:Lcom/sonymobile/smartconnect/hostapp/connection/ConnectionManager;

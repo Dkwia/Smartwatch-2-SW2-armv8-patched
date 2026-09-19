@@ -1184,26 +1184,6 @@
 
     invoke-virtual {v10, p1}, Lcom/sonymobile/smartconnect/hostapp/costanza/DialogManager;->onCreate(Landroid/os/Bundle;)V
 
-    .line 144
-    new-instance v4, Landroid/content/Intent;
-
-    const-string v10, "com.sonyericsson.extras.launch"
-
-    invoke-direct {v4, v10}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
-
-    .line 145
-    .local v4, "intent":Landroid/content/Intent;
-    new-instance v10, Landroid/content/ComponentName;
-
-    const-class v11, Lcom/sonymobile/smartconnect/smartwatch2/LaunchActivity;
-
-    invoke-direct {v10, p0, v11}, Landroid/content/ComponentName;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
-
-    invoke-virtual {v4, v10}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-
-    .line 146
-    invoke-virtual {p0, v4}, Lcom/sonymobile/smartconnect/hostapp/preferences/ExtensionsListBaseActivity;->startActivity(Landroid/content/Intent;)V
-
     .line 150
     invoke-static {p0}, Lcom/sonymobile/smartconnect/hostapp/util/MarketUtils;->isGooglePlayInstalled(Landroid/content/Context;)Z
 

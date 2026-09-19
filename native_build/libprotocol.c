@@ -532,6 +532,27 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
             if (result && len >= 16) {
                 set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
                 set_int_field(env, result, "mResult", (jint)read_u16_le(data + 14));
+                if (len > 16) {
+                    int count = (len - 16) / 4;
+                    if (count > 0 && count <= 16384) {
+                        jintArray arr = (*env)->NewIntArray(env, count);
+                        if (arr) {
+                            jint chunk[256];
+                            int processed = 0;
+                            while (processed < count) {
+                                int toCopy = count - processed;
+                                if (toCopy > 256) toCopy = 256;
+                                for (int i = 0; i < toCopy; i++) {
+                                    chunk[i] = (jint)read_u32_le(data + 16 + (processed + i) * 4);
+                                }
+                                (*env)->SetIntArrayRegion(env, arr, processed, toCopy, chunk);
+                                processed += toCopy;
+                            }
+                            set_object_field(env, result, "mValues", "[I", arr);
+                            (*env)->DeleteLocalRef(env, arr);
+                        }
+                    }
+                }
             }
             break;
         case 141:
@@ -608,6 +629,27 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
             if (result && len >= 16) {
                 set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
                 set_int_field(env, result, "mResult", (jint)read_u16_le(data + 14));
+                if (len > 16) {
+                    int count = (len - 16) / 4;
+                    if (count > 0 && count <= 16384) {
+                        jintArray arr = (*env)->NewIntArray(env, count);
+                        if (arr) {
+                            jint chunk[256];
+                            int processed = 0;
+                            while (processed < count) {
+                                int toCopy = count - processed;
+                                if (toCopy > 256) toCopy = 256;
+                                for (int i = 0; i < toCopy; i++) {
+                                    chunk[i] = (jint)read_u32_le(data + 16 + (processed + i) * 4);
+                                }
+                                (*env)->SetIntArrayRegion(env, arr, processed, toCopy, chunk);
+                                processed += toCopy;
+                            }
+                            set_object_field(env, result, "mValues", "[I", arr);
+                            (*env)->DeleteLocalRef(env, arr);
+                        }
+                    }
+                }
             }
             break;
         case 152:
@@ -621,6 +663,27 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
             result = create_msg_by_name(env, "com/sonymobile/smartconnect/hostapp/protocol/RequestSortingApps", msgId);
             if (result && len >= 14) {
                 set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
+                if (len > 14) {
+                    int count = (len - 14) / 4;
+                    if (count > 0 && count <= 16384) {
+                        jintArray arr = (*env)->NewIntArray(env, count);
+                        if (arr) {
+                            jint chunk[256];
+                            int processed = 0;
+                            while (processed < count) {
+                                int toCopy = count - processed;
+                                if (toCopy > 256) toCopy = 256;
+                                for (int i = 0; i < toCopy; i++) {
+                                    chunk[i] = (jint)read_u32_le(data + 14 + (processed + i) * 4);
+                                }
+                                (*env)->SetIntArrayRegion(env, arr, processed, toCopy, chunk);
+                                processed += toCopy;
+                            }
+                            set_object_field(env, result, "mAppsCids", "[I", arr);
+                            (*env)->DeleteLocalRef(env, arr);
+                        }
+                    }
+                }
             }
             break;
         case 154:
@@ -628,7 +691,26 @@ static jobject unpack_internal(JNIEnv *env, const uint8_t *data, uint32_t len) {
             if (result && len >= 18) {
                 set_int_field(env, result, "mAction", (jint)read_u16_le(data + 12));
                 set_int_field(env, result, "mResult", (jint)read_u16_le(data + 14));
-                set_int_field(env, result, "mCount", (jint)read_u16_le(data + 16));
+                uint16_t count = read_u16_le(data + 16);
+                set_int_field(env, result, "mCount", (jint)count);
+                if (count > 0 && len >= 18 + count * 4 && count <= 16384) {
+                    jintArray arr = (*env)->NewIntArray(env, count);
+                    if (arr) {
+                        jint chunk[256];
+                        int processed = 0;
+                        while (processed < count) {
+                            int toCopy = count - processed;
+                            if (toCopy > 256) toCopy = 256;
+                            for (int i = 0; i < toCopy; i++) {
+                                chunk[i] = (jint)read_u32_le(data + 18 + (processed + i) * 4);
+                            }
+                            (*env)->SetIntArrayRegion(env, arr, processed, toCopy, chunk);
+                            processed += toCopy;
+                        }
+                        set_object_field(env, result, "mAppsCids", "[I", arr);
+                        (*env)->DeleteLocalRef(env, arr);
+                    }
+                }
             }
             break;
         case 155:
@@ -921,9 +1003,22 @@ JNIEXPORT jobjectArray JNICALL Java_com_sonymobile_smartconnect_hostapp_protocol
             break;
         }
         case 140: {
-            packetLen = 24;
+            packetLen = 16;
             write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
             write_u16_le(buffer + 14, (uint16_t)get_int_field_safe(env, msg, "mResult", 0));
+            jintArray arr = (jintArray)get_object_field_safe(env, msg, "mValues", "[I");
+            if (arr) {
+                jsize arrLen = (*env)->GetArrayLength(env, arr);
+                jint *elems = (*env)->GetIntArrayElements(env, arr, NULL);
+                if (elems) {
+                    for (jsize i = 0; i < arrLen && (16 + (i + 1) * 4) <= (jsize)sizeof(buffer); i++) {
+                        write_u32_le(buffer + 16 + i * 4, (uint32_t)elems[i]);
+                    }
+                    packetLen = 16 + arrLen * 4;
+                    (*env)->ReleaseIntArrayElements(env, arr, elems, JNI_ABORT);
+                }
+                (*env)->DeleteLocalRef(env, arr);
+            }
             break;
         }
         case 141: {
@@ -988,9 +1083,22 @@ JNIEXPORT jobjectArray JNICALL Java_com_sonymobile_smartconnect_hostapp_protocol
             break;
         }
         case 151: {
-            packetLen = 24;
+            packetLen = 16;
             write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
             write_u16_le(buffer + 14, (uint16_t)get_int_field_safe(env, msg, "mResult", 0));
+            jintArray arr = (jintArray)get_object_field_safe(env, msg, "mValues", "[I");
+            if (arr) {
+                jsize arrLen = (*env)->GetArrayLength(env, arr);
+                jint *elems = (*env)->GetIntArrayElements(env, arr, NULL);
+                if (elems) {
+                    for (jsize i = 0; i < arrLen && (16 + (i + 1) * 4) <= (jsize)sizeof(buffer); i++) {
+                        write_u32_le(buffer + 16 + i * 4, (uint32_t)elems[i]);
+                    }
+                    packetLen = 16 + arrLen * 4;
+                    (*env)->ReleaseIntArrayElements(env, arr, elems, JNI_ABORT);
+                }
+                (*env)->DeleteLocalRef(env, arr);
+            }
             break;
         }
         case 152: {
@@ -1000,15 +1108,41 @@ JNIEXPORT jobjectArray JNICALL Java_com_sonymobile_smartconnect_hostapp_protocol
             break;
         }
         case 153: {
-            packetLen = 228;
+            packetLen = 14;
             write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
+            jintArray arr = (jintArray)get_object_field_safe(env, msg, "mAppsCids", "[I");
+            if (arr) {
+                jsize arrLen = (*env)->GetArrayLength(env, arr);
+                jint *elems = (*env)->GetIntArrayElements(env, arr, NULL);
+                if (elems) {
+                    for (jsize i = 0; i < arrLen && (14 + (i + 1) * 4) <= (jsize)sizeof(buffer); i++) {
+                        write_u32_le(buffer + 14 + i * 4, (uint32_t)elems[i]);
+                    }
+                    packetLen = 14 + arrLen * 4;
+                    (*env)->ReleaseIntArrayElements(env, arr, elems, JNI_ABORT);
+                }
+                (*env)->DeleteLocalRef(env, arr);
+            }
             break;
         }
         case 154: {
-            packetLen = 20;
+            packetLen = 18;
             write_u16_le(buffer + 12, (uint16_t)get_int_field_safe(env, msg, "mAction", 0));
             write_u16_le(buffer + 14, (uint16_t)get_int_field_safe(env, msg, "mResult", 0));
             write_u16_le(buffer + 16, (uint16_t)get_int_field_safe(env, msg, "mCount", 0));
+            jintArray arr = (jintArray)get_object_field_safe(env, msg, "mAppsCids", "[I");
+            if (arr) {
+                jsize arrLen = (*env)->GetArrayLength(env, arr);
+                jint *elems = (*env)->GetIntArrayElements(env, arr, NULL);
+                if (elems) {
+                    for (jsize i = 0; i < arrLen && (18 + (i + 1) * 4) <= (jsize)sizeof(buffer); i++) {
+                        write_u32_le(buffer + 18 + i * 4, (uint32_t)elems[i]);
+                    }
+                    packetLen = 18 + arrLen * 4;
+                    (*env)->ReleaseIntArrayElements(env, arr, elems, JNI_ABORT);
+                }
+                (*env)->DeleteLocalRef(env, arr);
+            }
             break;
         }
         case 155: {
